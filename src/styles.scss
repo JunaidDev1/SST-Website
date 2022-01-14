@@ -1,0 +1,42 @@
+:root {
+    --primaryColor: #1885e8;
+    --secondaryColor: #06d026;
+    --lightColor: #f5f5f5;
+    --grayColor: #a3a2a0;
+    --dangerColor: #fe0000;
+    --whiteColor: #ffffff;
+    --blackColor: #000000;
+}
+
+.bgPrimary {
+    background-color: var(--primaryColor) !important;
+}
+
+.bgSecondary {
+    background-color: var(--secondaryColor) !important;
+}
+
+.primary {
+    color: var(--primaryColor) !important;
+}
+
+.secondary {
+    color: var(--secondaryColor) !important;
+}
+
+.light {
+    color: var(--lightColor) !important;
+}
+
+.bgLight {
+    background-color: var(--lightColor) !important;
+}
+
+.gray {
+    color: var(--grayColor) !important;
+}
+
+.bgGray {
+    background-color: var(--grayColor) !important;
+}
+
