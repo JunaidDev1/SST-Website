@@ -1,87 +1,65 @@
-
-
-
-
 <div class="vc_row wpb_row vc_row-fluid">
-	<div class="wpb_column vc_column_container vc_col-sm-12">
-		<div class="vc_column-inner">
-			<div class="wpb_wrapper">
-				<div class="team-area default-padding bottom-less">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-8 offset-lg-2">
-								<div class="text-center">
+    <div class="wpb_column vc_column_container vc_col-sm-12">
+        <div class="vc_column-inner">
+            <div class="wpb_wrapper">
+                <div class="team-area default-padding bottom-less">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="text-center">
                                     <h2 class="rtin-title">Customers Feedback</h2>
                                 </div>
                                 <div class="text-center">
-                                    <p class="sub-text">Lorem Ipsum is simply dummy text of the printing and typesetting has been the industrys standard dummy text ever since</p>
+                                    <p class="sub-text mb-5">Lorem Ipsum is simply dummy text of the printing and
+                                        typesetting
+                                        has been the industrys standard dummy text ever since</p>
                                 </div>
-							</div>
-						</div>
-					</div>
-					<div class="container">
-						<div class="team-items">
-							<div class="row">
-								<div class="single-item col-lg-6 col-md-6">
-									<div class="item">
-                                        <div class="translate-bottom-75 opacity-animation transition-150 transition-delay-1600">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="team-items">
+                            <div class="row">
+                                <div *ngFor="let review of reviews" class="single-item col-lg-6 col-md-6">
+                                    <div class="item">
+                                        <div
+                                            class="translate-bottom-75 opacity-animation transition-150 transition-delay-1600">
                                             <div class="rtin-item">
                                                 <div class="media">
-                                                    <div class="rtin-thumb"><img width="70" height="70" src="https://radiustheme.com/demo/wordpress/themes/digeco/wp-content/uploads/2020/01/testimonial2.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" loading="lazy"></div>
-                                                    <div class="media-body space-sm">
-                                                        <h4 class="rtin-title">Robert Bruce</h4>
-                                                        <div class="rtin-designation"><span>Apps Developer</span></div>
+                                                    <div class="rtin-thumb"><img width="70" height="70"
+                                                            [src]="review.reviewerImage"
+                                                            class="attachment-thumbnail size-thumbnail wp-post-image"
+                                                            loading="lazy"></div>
+                                                    <div class="media-body space-sm mt-2">
+                                                        <h4 class="rtin-title">{{review.reviewerName}}</h4>
+                                                        <div class="rtin-designation">
+                                                            <span>{{review.reviewerCompany}}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <ul class="rating">
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                                    </li>
+                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                                    </li>
                                                 </ul>
-                                                <p>Grursus mal suada faci lisis Lorem ipsum dolarorit more and dumm ametion consectetur elit. Vesti at bulum nec odio aea the of dumm ipsumm ipsum that dolocons rsus mal suada</p>
+                                                <p>{{review.review}}</p>
                                                 <div class="rtin-icon"><i class="flaticon-quote"></i></div>
                                             </div>
                                         </div>
-
-
-
-									</div>
-								</div>
-								<div class="single-item col-lg-6 col-md-6">
-									<div class="item">
-                                        <div class="translate-bottom-75 opacity-animation transition-150 transition-delay-1600">
-                                            <div class="rtin-item">
-                                                <div class="media">
-                                                    <div class="rtin-thumb"><img width="70" height="70" src="https://radiustheme.com/demo/wordpress/themes/digeco/wp-content/uploads/2020/01/testimonial2.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="" loading="lazy"></div>
-                                                    <div class="media-body space-sm">
-                                                        <h4 class="rtin-title">Robert Bruce</h4>
-                                                        <div class="rtin-designation"><span>Apps Developer</span></div>
-                                                    </div>
-                                                </div>
-                                                <ul class="rating">
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                </ul>
-                                                <p>Grursus mal suada faci lisis Lorem ipsum dolarorit more and dumm ametion consectetur elit. Vesti at bulum nec odio aea the of dumm ipsumm ipsum that dolocons rsus mal suada</p>
-                                                <div class="rtin-icon"><i class="flaticon-quote"></i></div>
-                                            </div>
-                                        </div>
-
-
-
-									</div>
-								</div>
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
