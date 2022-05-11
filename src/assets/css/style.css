@@ -740,7 +740,8 @@ input {
 
 .bg-gradient {
   background: #086ad8;
-  background: linear-gradient(90deg, rgba(9, 70, 139, 1) 0%, rgba(30, 132, 246, 1) 100%);
+  /* background: linear-gradient(90deg, rgba(9, 70, 139, 1) 0%, rgba(30, 132, 246, 1) 100%); */
+  background: linear-gradient(90deg, rgb(2 29 60) 0%, rgba(30, 132, 246, 1) 100%);
 }
 
 .btn-theme {
@@ -7835,7 +7836,7 @@ nav.bg-theme.navbar.bootsnav ul.nav > li.active > a {
 
 .logo,
 .f-item img {
-  max-height: 60px !important;
+  max-height: 120px !important;
   max-width: inherit;
 }
 
