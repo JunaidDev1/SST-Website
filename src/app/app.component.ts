@@ -9,19 +9,8 @@ export class AppComponent {
 
   title = 'sst-website';
 
-  constructor() {
-
-  }
-
-  onActivate(event) {
+  onActivate(event: any) {
     window.scroll(0, 0);
   }
 
-
-  submit(value){
-    alert(value);
-  }
-  ngSubmit(form){
-    console.log(form.form.value);
-  }
 }

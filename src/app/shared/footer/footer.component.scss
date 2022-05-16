@@ -1,0 +1,250 @@
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+footer .fixed-shape {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: -1;
+}
+
+footer .fixed-shape img {
+    opacity: 0.1;
+    margin-bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+footer img,
+footer .widget-title {
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+footer .f-item.about {
+    margin-right: 15px;
+    img {
+        width: 100px;
+        background: var(--whiteColor);
+        border-radius: 0 0 25px 0;
+    }
+}
+
+footer.bg-dark .f-item.about {
+    box-shadow: inherit;
+}
+
+footer .item {
+    margin-top: 50px;
+}
+
+footer .f-items.default-padding {
+    padding-top: 70px;
+}
+
+footer form {
+    position: relative;
+    margin-top: 30px;
+}
+
+footer form button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: var(--primaryColor);
+    color: var(--whiteColor);
+}
+
+footer .item .f-item form input {
+    border-radius: 30px !important;
+    padding: 30px;
+    border: 1px solid var(--borderColor);
+}
+
+footer.bg-dark .item .f-item form input {
+    border: none;
+}
+
+footer .f-item.link li {
+    margin-bottom: 10px;
+}
+
+footer .f-item.link li a {
+    color: var(--grayColor);
+    font-weight: normal;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+footer .f-item.link li a:hover {
+    color: var(--primaryColor);
+}
+
+footer .f-item.link li:last-child {
+    margin-bottom: 0;
+}
+
+footer.bg-dark .f-item.link li a {
+    color: var(--lightColor);
+}
+
+footer.bg-dark .f-item.link li a:hover {
+    color: var(--whiteColor);
+}
+
+footer.bg-dark p {
+    color: var(--lightColor);
+}
+
+footer .f-item .address li strong {
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--blackColor);
+}
+
+footer .f-item .address li {
+    margin-bottom: 20px;
+}
+
+footer .f-item .address li:last-child {
+    margin-bottom: 0;
+}
+
+footer.bg-dark .f-item .address li {
+    color: var(--lightColor);
+}
+
+footer.bg-dark .f-item .address li a {
+    color: var(--lightColor);
+}
+
+footer .f-item .address li a {
+    font-weight: 400;
+}
+
+footer.bg-dark .f-item .address li strong {
+    color: var(--whiteColor);
+}
+
+footer .f-item .download h5 {
+    font-weight: 600;
+    margin: 0;
+}
+
+footer .f-item .download {
+    margin-top: 30px;
+}
+
+footer .f-item .download a {
+    display: inline-block;
+    margin-right: 25px;
+    margin-top: 15px;
+    color: var(--grayColor);
+}
+
+footer.bg-dark .f-item .download a {
+    color: var(--lightColor);
+}
+
+footer .f-item .download a:last-child {
+    margin-right: 0;
+}
+
+footer .f-item .download a i {
+    font-size: 25px;
+    margin-right: 5px;
+    position: relative;
+    top: 3px;
+    color: var(--primaryColor);
+}
+
+footer.bg-dark .f-item .download a i {
+    color: var(--lightColor);
+}
+
+footer .address li {
+    display: flex;
+}
+
+footer .address li i {
+    font-size: 24px;
+    margin-right: 15px;
+    position: relative;
+    top: 5px;
+}
+
+footer.bg-dark .address li i {
+    color: #ffffff;
+}
+
+/* Footer Bottom */
+
+footer.bg-dark .footer-bottom {
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+}
+
+.footer-bottom li {
+    display: inline-block;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: var(--blackColor);
+}
+
+footer.bg-dark .footer-bottom p {
+    margin: 0;
+    color: var(--borderColor);
+}
+
+footer.bg-dark .footer-bottom a {
+    color: var(--lightColor);
+}
+
+.footer-bottom {
+    padding: 20px 0;
+    border-top: 1px solid var(--borderColor);
+}
+
+.footer-bottom p a {
+    color: var(--whiteColor) !important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    margin-bottom: 5em;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--darkGray);
+    background-color: var(--whiteColor);
+    background-clip: padding-box;
+    border: 1px solid var(--borderColor);
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    .menu-item {
+        a {
+            text-decoration: none;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="headerBg"></div>
+
+<div class="teamsSection my-5">
+    <div class="container px-5 pb-5">
+        <div class="row">
+            <div class="col-md-12 mb-5 pb-5">
+                <div class="site-heading text-center">
+                    <h2 class="text-uppercase bold primary">Expert Team</h2>
+                    <h3 class="bold text-dark my-3 pb-3">Meet Our Leadership</h3>
+                </div>
+            </div>
+            <div *ngFor="let member of dataHelper.ourTeam; index as i" class="single-item col-lg-4 col-md-6">
+                <div class="item rounded" style="position: relative;">
+                    <div class="thumb shadow rounded">
+                        <img [src]="member.imageUrl" alt="Thumb">
+                    </div>
+                    <div class="social">
+                        <input type="checkbox" id="{{'toggle' + i}}" class="share-toggle" hidden="">
+                        <label for="{{'toggle' + i}}" class="share-button">
+                            <i class="fas fa-plus"></i>
+                        </label>
+                        <a [attr.href]="member.linkedIn" target="_blank" class="share-icon linkedin"> <i
+                                class="fab fa-linkedin"></i> </a>
+                    </div>
+                    <div class="info text-center">
+                        <h4>{{member.name}}</h4>
+                        <span class="secondary">{{member.designation}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark px-3">
+    <div class="container-fluid">
+        <div class="navbar-brand">
+            <img src="./assets/images/logo.png">
+            <h5 class="text-white">Soft Sync <br>Technologies</h5>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ms-auto">
+                <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">Home</a>
+                </li>
+                <li [routerLink]="['/services']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">Services</a>
+                </li>
+                <li [routerLink]="['/our-team']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">Team</a>
+                </li>
+                <li [routerLink]="['/projects']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">Projects</a>
+                </li>
+                <li [routerLink]="['/contact-us']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

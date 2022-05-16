@@ -1,29 +1,39 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './template/header/header.component';
-import { ServicesComponent } from './template/services/services.component';
-import { FooterComponent } from './template/footer/footer.component';
-import { TeamComponent } from './template/team/team.component';
-import { TestimonialComponent } from './template/testimonial/testimonial.component';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { ServicesComponent } from './services/services.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { OurTeamComponent } from './our-team/our-team.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ServicesComponent,
     FooterComponent,
-    TeamComponent,
-    TestimonialComponent
+    HomeComponent,
+    ServicesComponent,
+    ProjectsComponent,
+    OurTeamComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

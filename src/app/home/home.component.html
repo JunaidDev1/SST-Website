@@ -1,0 +1,136 @@
+<app-header></app-header>
+
+<div class="homeHeader">
+    <div class="absoluteContainer">
+        <div class="bannerContent">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content">
+                        <h4 class="animate__animated animate__fadeInLeft text-white">IT Software &amp; Design</h4>
+                        <h2 class="animate__animated animate__fadeInDown text-white mb-5">
+                            Creating a better <br /> <strong>IT solutions</strong>
+                        </h2>
+                        <a class="animate__animated animate__fadeInUp btn btn-outline-light"
+                            href="https://creativedigital.tech/tandawordpress/services-version-one/">Start Now</a>
+
+                        <a class="video-play-button text-center" href="https://www.youtube.com/watch?v=owhuBrGIOsE">
+                            <i class="fa fa-play text-primary"></i>
+                            <img src="https://miro.medium.com/max/1200/1*RpHD9z9d6YlaIAfF4tmaWA.gif">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <img class="animate__animated animate__fadeInUp techIllustration" src="./assets/images/5.png"
+                        alt="Thumb">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-shape">
+        <img src="./assets/images/waves-shape.svg" alt="Shape">
+    </div>
+</div>
+
+<div class="servicesContainer my-5">
+    <img class="curvedImage" src="https://wordpressriverthemes.com/tanda/wp-content/uploads/2021/01/7.png">
+    <div class="container px-5">
+        <div class="row">
+            <div class="col-md-12 mb-5 pb-5">
+                <div class="site-heading text-center">
+                    <h2 class="text-uppercase bold primary">Services</h2>
+                    <h3 class="bold text-dark my-3 pb-3">We run all kinds of services in form <br />
+                        of Information &amp; Technologies</h3>
+                </div>
+            </div>
+            <div *ngFor="let service of ourServices" class="col-lg-6 col-md-6 single-item">
+                <div class="item shadow bg-white p-5 mb-4 d-flex">
+                    <div class="icon"><i class="fa fa-circle"></i></div>
+                    <div class="info">
+                        <h4 class="secondary">{{service.title}}</h4>
+                        <p class="darkGray">{{service.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="teamsSection my-5">
+    <div class="container px-5 pb-5">
+        <div class="row">
+            <div class="col-md-12 mb-5 pb-5">
+                <div class="site-heading text-center">
+                    <h2 class="text-uppercase bold primary">Expert Team</h2>
+                    <h3 class="bold text-dark my-3 pb-3">Meet Our Leadership</h3>
+                </div>
+            </div>
+            <div *ngFor="let member of ourTeam; index as i" class="single-item col-lg-4 col-md-6">
+                <div class="item rounded" style="position: relative;">
+                    <div class="thumb shadow rounded">
+                        <img [src]="member.imageUrl" alt="Thumb">
+                    </div>
+                    <div class="social">
+                        <input type="checkbox" id="{{'toggle' + i}}" class="share-toggle" hidden="">
+                        <label for="{{'toggle' + i}}" class="share-button">
+                            <i class="fas fa-plus"></i>
+                        </label>
+                        <a [attr.href]="member.linkedIn" target="_blank" class="share-icon linkedin"> <i
+                                class="fab fa-linkedin"></i> </a>
+                    </div>
+                    <div class="info text-center">
+                        <h4>{{member.name}}</h4>
+                        <span class="secondary">{{member.designation}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reviewsSection my-5">
+    <div class="container px-5 pb-5">
+        <div class="row">
+            <div class="col-md-12 mb-5 pb-5">
+                <div class="site-heading text-center">
+                    <h2 class="text-uppercase bold primary">Customers Feedback</h2>
+                    <h3 class="bold text-dark my-3 pb-3">What our valuabe clients say</h3>
+                </div>
+            </div>
+            <div *ngFor="let review of reviews" class="col-lg-6 col-md-6">
+                <div class="item">
+                    <div class="translate-bottom-75 opacity-animation transition-150 transition-delay-1600">
+                        <div class="rtin-item">
+                            <div class="media">
+                                <div class="rtin-thumb"><img width="70" height="70" [src]="review.reviewerImage"
+                                        class="attachment-thumbnail size-thumbnail wp-post-image" loading="lazy"></div>
+                                <div class="media-body space-sm mt-2">
+                                    <h4 class="rtin-title">{{review.reviewerName}}</h4>
+                                    <div class="rtin-designation">
+                                        <span>{{review.reviewerCompany}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="rating">
+                                <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="star-rate"><i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                            <p>{{review.review}}</p>
+                            <div class="rtin-icon"><i class="flaticon-quote"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
