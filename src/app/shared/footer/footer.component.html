@@ -78,8 +78,8 @@
                         <div class="address">
                             <ul>
                                 <li>
-                                    <div class="icon"><i class="fa fa-location"></i></div>
-                                    <div class="info pt-1">7138 Floral Ave, West Chester Township, OH 45069</div>
+                                    <div class="icon pt-2"><i class="fa fa-location"></i></div>
+                                    <div class="info">7138 Floral Ave, West Chester <br />Township, OH 45069</div>
                                 </li>
                                 <li>
                                     <div class="icon pt-2"><i class="fa fa-inbox"></i></div>
@@ -89,8 +89,8 @@
                                 </li>
                                 <li>
                                     <div class="icon pt-2"><i class="fa fa-phone"></i></div>
-                                    <div class="info"> +1513 668 2469
-                                        <br> +92323 12345 13
+                                    <div class="info"> 1 (513) 668 2469
+                                        <br> 92 (323) 12345 13
                                     </div>
                                 </li>
                             </ul>
@@ -106,21 +106,14 @@
                 <div class="col-md-6">
                     <p>© Copyright 2022. Soft Sync Technologies</p>
                 </div>
-                <div class="col-md-6 text-right link">
-                    <div class="menu-footer-menu-container">
-                        <ul id="menu-footer-menu" class="menu">
-                            <li id="menu-item-310"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-310">
-                                <a href="https://wordpressriverthemes.com/tanda/">Home</a>
-                            </li>
-                            <li id="menu-item-309"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-309"><a
-                                    href="https://wordpressriverthemes.com/tanda/about-us/">About</a></li>
-                            <li id="menu-item-311"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311"><a
-                                    href="https://wordpressriverthemes.com/tanda/contact-us/">Contact</a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-6 text-end">
+                    <ul class="menu mb-0">
+                        <li *ngFor="let link of dataHelper.socialLinks" class="menu-item">
+                            <a [href]="link.link" target="_blank">
+                                <img [src]="link.imageUrl">
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

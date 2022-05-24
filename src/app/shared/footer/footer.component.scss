@@ -245,6 +245,11 @@ ul {
     .menu-item {
         a {
             text-decoration: none;
+
+            img {
+                width: 30px;
+                margin-bottom: 0;
+            }
         }
     }
 }

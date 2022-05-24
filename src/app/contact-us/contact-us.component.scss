@@ -1,0 +1,46 @@
+input,
+select {
+    height: 50px;
+}
+
+.form-control {
+    background-color: var(--lightColor);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.offices {
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 1em;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainContent {
+        .container {
+            padding: 0 10px !important;
+            .justify-content-center {
+                margin-bottom: 0 !important;
+                .form-group {
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
+
+    .offices {
+        text-align: center;
+        .col-md-4 {
+            margin-bottom: 1em;
+        }
+    }
+}

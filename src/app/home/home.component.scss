@@ -78,11 +78,38 @@
     }
 
     .single-item {
+        cursor: pointer;
+        position: relative;
         .icon {
             width: 40%;
             i {
                 font-size: 55px;
                 color: var(--lightColor);
+            }
+        }
+
+        .onHoverOverlay {
+            display: none !important;
+            position: absolute;
+            top: 0;
+            width: 96%;
+            opacity: 0.5;
+        }
+    }
+
+    .single-item:hover {
+        h4,
+        p {
+            color: #ffffff !important;
+        }
+        .item {
+            z-index: 0;
+            background: transparent !important;
+
+            &.onHoverOverlay {
+                z-index: -1 !important;
+                display: flex !important;
+                background: linear-gradient(90deg, rgba(8, 106, 216, 1) 0%, rgba(10, 60, 116, 1) 100%) !important;
             }
         }
     }
@@ -203,34 +230,6 @@
 
     .thumb .social a.linkedin {
         background: #0077b5 none repeat scroll 0 0;
-    }
-}
-
-.site-heading {
-    h3 {
-        letter-spacing: 1px;
-        line-height: 1.4;
-        position: relative;
-    }
-    h3::before {
-        background: var(--primaryColor) none repeat scroll 0 0;
-        bottom: 0;
-        content: "";
-        height: 2px;
-        left: 50%;
-        margin-left: -25px;
-        position: absolute;
-        width: 40px;
-    }
-    h3::after {
-        background: var(--primaryColor) none repeat scroll 0 0;
-        bottom: 0;
-        content: "";
-        height: 2px;
-        left: 50%;
-        margin-left: 20px;
-        position: absolute;
-        width: 5px;
     }
 }
 

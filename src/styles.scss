@@ -127,7 +127,56 @@ body {
 }
 
 .headerBg {
-    height: 120px;
-    margin-bottom: 5em;
+    height: 95px;
     background: linear-gradient(90deg, rgb(2 29 60) 0%, rgba(30, 132, 246, 1) 100%);
+}
+
+.site-heading {
+    h3 {
+        letter-spacing: 1px;
+        line-height: 1.4;
+        position: relative;
+    }
+    h3::before {
+        background: var(--primaryColor) none repeat scroll 0 0;
+        bottom: 0;
+        content: "";
+        height: 2px;
+        left: 50%;
+        margin-left: -25px;
+        position: absolute;
+        width: 40px;
+    }
+    h3::after {
+        background: var(--primaryColor) none repeat scroll 0 0;
+        bottom: 0;
+        content: "";
+        height: 2px;
+        left: 50%;
+        margin-left: 20px;
+        position: absolute;
+        width: 5px;
+    }
+}
+
+.slidingFixedBanner {
+    background-attachment: fixed !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    height: 450px;
+    position: relative;
+
+    .overlayBanner {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
+
+@media (max-width: 768px) {
+    .site-heading {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
 }
