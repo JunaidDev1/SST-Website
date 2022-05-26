@@ -14,6 +14,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TeamComponent } from './components/team/team.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProjectsComponent,
     OurTeamComponent,
     ContactUsComponent,
+    TeamComponent,
   ],
   imports: [
     BrowserModule,

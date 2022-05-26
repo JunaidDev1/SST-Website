@@ -1,0 +1,17 @@
+<div class="item rounded" style="position: relative;">
+    <div class="thumb shadow rounded">
+        <img [src]="member.imageUrl" alt="Thumb">
+    </div>
+    <div class="social">
+        <input type="checkbox" id="{{'toggle' + index}}" class="share-toggle" hidden="">
+        <label for="{{'toggle' + index}}" class="share-button">
+            <i class="fas fa-plus"></i>
+        </label>
+        <a [attr.href]="member.linkedIn" target="_blank" class="share-icon linkedin"> <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+    <div class="info text-center">
+        <h4>{{member.name}}</h4>
+        <span class="secondary">{{member.designation}}</span>
+    </div>
+</div>

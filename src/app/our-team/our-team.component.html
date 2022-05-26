@@ -15,23 +15,7 @@
                 </div>
             </div>
             <div *ngFor="let member of dataHelper.ourTeam; index as i" class="single-item col-lg-4 col-md-6">
-                <div class="item rounded" style="position: relative;">
-                    <div class="thumb shadow rounded">
-                        <img [src]="member.imageUrl" alt="Thumb">
-                    </div>
-                    <div class="social">
-                        <input type="checkbox" id="{{'toggle' + i}}" class="share-toggle" hidden="">
-                        <label for="{{'toggle' + i}}" class="share-button">
-                            <i class="fas fa-plus"></i>
-                        </label>
-                        <a [attr.href]="member.linkedIn" target="_blank" class="share-icon linkedin"> <i
-                                class="fab fa-linkedin"></i> </a>
-                    </div>
-                    <div class="info text-center">
-                        <h4>{{member.name}}</h4>
-                        <span class="secondary">{{member.designation}}</span>
-                    </div>
-                </div>
+                <app-team [member]="member" [index]="i"></app-team>
             </div>
         </div>
     </div>

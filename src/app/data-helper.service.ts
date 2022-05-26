@@ -35,13 +35,19 @@ export class DataHelperService {
       name: 'Junaid Iqbal',
       designation: 'Co-Founder | Senior Software Engineer | Angular | Ionic | Firebase',
       linkedIn: 'https://www.linkedin.com/in/junaid-iqbal-b240b5158/',
-      imageUrl: './assets/images/team/junaid.jpg'
+      imageUrl: './assets/images/team/DSC_6166aa.png'
     },
     {
       name: 'Marwa Qureshi',
       designation: 'Software Engineer | IT Consultant | Java',
       linkedIn: 'https://www.linkedin.com/in/marwaq/',
       imageUrl: './assets/images/team/marwa.png'
+    },
+    {
+      name: 'Hamza Rehman',
+      designation: 'Software Engineer | Angular | Node JS | Mondo DB',
+      linkedIn: 'https://www.linkedin.com/in/hamza-rehman033',
+      imageUrl: './assets/images/team/hamza.jpg'
     }
   ];
 
