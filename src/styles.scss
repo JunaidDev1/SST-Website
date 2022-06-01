@@ -5,8 +5,8 @@
 @import "animate.css";
 
 :root {
-    --primaryColor: #086ad8;
-    --secondaryColor: #007bff;
+    --primaryColor: #163b77;
+    --secondaryColor: #0fa8e0;
     --lightColor: #e7f0fb;
     --grayColor: #a3a2a0;
     --whiteColor: #ffffff;
@@ -128,7 +128,7 @@ body {
 
 .headerBg {
     height: 95px;
-    background: linear-gradient(90deg, rgb(2 29 60) 0%, rgba(30, 132, 246, 1) 100%);
+    background: linear-gradient(90deg, #163b77 0%, #0fa8e0 100%);
 }
 
 .site-heading {

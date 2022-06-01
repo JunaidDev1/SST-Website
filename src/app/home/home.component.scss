@@ -1,6 +1,6 @@
 .homeHeader {
     position: relative;
-    background: linear-gradient(90deg, rgb(2 29 60) 0%, rgba(30, 132, 246, 1) 100%);
+    background: linear-gradient(90deg, #163b77 0%, #0fa8e0 100%);
     padding: 10em 5em;
     justify-content: center;
     height: 110vh;
@@ -109,7 +109,7 @@
             &.onHoverOverlay {
                 z-index: -1 !important;
                 display: flex !important;
-                background: linear-gradient(90deg, rgba(8, 106, 216, 1) 0%, rgba(10, 60, 116, 1) 100%) !important;
+                background: linear-gradient(90deg, #163b77 0%, #0fa8e0 100%) !important;
             }
         }
     }
