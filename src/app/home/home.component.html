@@ -75,6 +75,11 @@
             <div *ngFor="let member of ourTeam | slice:0:3 index as i" class="single-item col-lg-4 col-md-6">
                 <app-team [member]="member" [index]="i"></app-team>
             </div>
+            <div class="text-center my-4">
+                <button routerLink="/our-team" class="btn btn-dark shadow rounded-30 px-3">
+                    Explore Our Team <i class="fa fa-arrow-right ms-2"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>

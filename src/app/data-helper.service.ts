@@ -39,15 +39,21 @@ export class DataHelperService {
     },
     {
       name: 'Marwa Qureshi',
-      designation: 'Software Engineer | IT Consultant | Java',
+      designation: 'Associate Software Engineer | IT Consultant | Java',
       linkedIn: 'https://www.linkedin.com/in/marwaq/',
       imageUrl: './assets/images/team/marwa.png'
     },
     {
       name: 'Hamza Rehman',
-      designation: 'Software Engineer | Angular | Node JS | Mondo DB',
+      designation: 'Software Engineer | Angular | Node JS | Mondo DB | WordPress',
       linkedIn: 'https://www.linkedin.com/in/hamza-rehman033',
       imageUrl: './assets/images/team/hamza.jpg'
+    },
+    {
+      name: 'Maham Qureshi',
+      designation: 'HR Generalist | Technical Recruiter | Payroll Manager',
+      linkedIn: 'https://www.linkedin.com/in/maham-qureshi-5a6b56163/',
+      imageUrl: './assets/images/team/maham.JPG'
     }
   ];
 
