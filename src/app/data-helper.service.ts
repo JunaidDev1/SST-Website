@@ -8,19 +8,19 @@ export class DataHelperService {
   ourServices: any[] = [
     {
       title: 'IT Design',
-      description: 'Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond. Discourse unwilling am no described'
+      description: 'At SoftSync Technologies, we believe that design is at the heart of every great software product. Our team of talented designers meticulously crafts visually stunning and intuitive interfaces that captivate users and enhance their overall experience. From sleek and modern aesthetics to seamless user interactions, our design approach is driven by both aesthetics and functionality.'
     },
     {
       title: 'Analytic Solutions',
-      description: 'Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond. Discourse unwilling am no described'
+      description: 'We understand the importance of data-driven decision-making in todays competitive landscape. Our analytics solutions are designed to help you harness the full potential of your data, enabling you to uncover patterns, trends, and opportunities that can propel your business forward. Our Analytic Solution offerings include: Data Analytics and Business Intelligence.'
     },
     {
       title: 'Risk Management',
-      description: 'Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond. Discourse unwilling am no described'
+      description: 'We specialize in comprehensive risk management solutions tailored to your unique needs. Our approach includes identifying, assessing, and mitigating risks through proactive strategies and advanced analytics. With our expertise, you can anticipate potential threats, make informed decisions, and protect your assets. Our risk management solutions encompass compliance, cybersecurity, financial analysis, and operational resilience.'
     },
     {
       title: 'Business Planning',
-      description: 'Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond. Discourse unwilling am no described'
+      description: 'Business planning is a fundamental process that lays the foundation for success. We understand the significance of a well-crafted business plan in achieving your goals. Our experts collaborate with you to develop comprehensive business plans that encompass market analysis, competitive insights, financial projections, and growth strategies. With clarify your vision, set achievable objectives, and outline the roadmap to reach them.'
     },
   ];
 
@@ -38,6 +38,18 @@ export class DataHelperService {
       imageUrl: './assets/images/team/DSC_6166aa.png'
     },
     {
+      name: 'Muhammad Awais',
+      designation: 'Software Engineer | Angular | Firebase | WordPress',
+      linkedIn: 'https://www.linkedin.com/in/realmawais/',
+      imageUrl: './assets/images/team/Awais.png'
+    },
+    {
+      name: 'Umair Ejaz',
+      designation: 'Software Engineer | Angular | Firebase',
+      linkedIn: 'https://www.linkedin.com/in/umair-ejaz-597a151a2/',
+      imageUrl: './assets/images/team/Umair.jpg'
+    },
+    {
       name: 'Marwa Qureshi',
       designation: 'Associate Software Engineer | IT Consultant | Java',
       linkedIn: 'https://www.linkedin.com/in/marwaq/',
@@ -45,7 +57,7 @@ export class DataHelperService {
     },
     {
       name: 'Hamza Rehman',
-      designation: 'Software Engineer | Angular | Node JS | Mondo DB | WordPress',
+      designation: 'Software Engineer | Angular | Node JS | Mongo DB | WordPress',
       linkedIn: 'https://www.linkedin.com/in/hamza-rehman033',
       imageUrl: './assets/images/team/hamza.jpg'
     },
@@ -76,42 +88,42 @@ export class DataHelperService {
     {
       title: 'Responsive Website Design',
       imageUrl: './assets/images/services/web-design.png',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'We create websites that seamlessly adapt to various screen sizes and devices, ensuring an optimal user experience for your visitors, whether they are browsing on desktops, tablets, or smartphones.'
     },
     {
       title: 'Android Mobile Apps',
       imageUrl: './assets/images/services/android.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'Our Android app development expertise extends to integrating your app with various APIs, third-party services, and backend systems. Whether its social media integration, payment gateway integration, or connectivity with enterprise solutions, we ensure seamless connectivity and functionality.'
     },
     {
       title: 'iOS Mobile Apps',
       imageUrl: './assets/images/services/ios.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'We understand that every business has unique requirements. Our iOS app development process begins with a thorough understanding of your goals, target audience, and brand identity. This allows us to create tailor-made solutions that align with your vision and deliver exceptional user experiences.'
     },
     {
       title: 'Cross Platform Apps',
       imageUrl: './assets/images/services/hybrid.png',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'Our talented designers combine aesthetics and functionality to create visually captivating websites that align with your brands visual identity. From color schemes to typography, we pay attention to every detail to create a cohesive and responsive design for all platforms.'
     },
     {
       title: 'UI / UX Development',
       imageUrl: './assets/images/services/uiux.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'We focus on creating intuitive and user-friendly interfaces to enhance the overall user experience. Our UX design approach ensures that visitors can effortlessly navigate through your website, increasing engagement and conversions.'
     },
     {
       title: 'Admin CMS / Dashboard',
       imageUrl: './assets/images/services/admin.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'We specialize in integrating robust CMS platforms, such as WordPress empowering you to easily manage and update your websites content without any technical expertise.'
     },
     {
       title: 'IT Consulting',
       imageUrl: './assets/images/services/consulting.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'Our services extend beyond the initial design and development phase. We offer comprehensive website/ application maintenance and support packages to ensure your web application remains secure, up-to-date, and optimized for performance.'
     },
     {
       title: 'Customer Satisfaction',
       imageUrl: './assets/images/services/satisfaction.jpeg',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+      description: 'Whether you are a small business seeking a professional website or a large enterprise looking to revamp your online presence, Team Soft Sync Tech is committed to delivering exceptional IT services that drive results.'
     },
   ];
 
