@@ -8,7 +8,7 @@ export class DataHelperService {
   ourServices: any[] = [
     {
       title: 'IT Design',
-      description: 'At SoftSync Technologies, we believe that design is at the heart of every great software product. Our team of talented designers meticulously crafts visually stunning and intuitive interfaces that captivate users and enhance their overall experience. From sleek and modern aesthetics to seamless user interactions, our design approach is driven by both aesthetics and functionality.'
+      description: 'At Soft Sync Technologies, we believe that design is at the heart of every great software product. Our team of talented designers meticulously crafts visually stunning and intuitive interfaces that captivate users and enhance their overall experience. From sleek and modern aesthetics to seamless user interactions, our design approach is driven by both aesthetics and functionality.'
     },
     {
       title: 'Analytic Solutions',
@@ -35,7 +35,7 @@ export class DataHelperService {
       name: 'Junaid Iqbal',
       designation: 'Co-Founder | Senior Software Engineer | Angular | Ionic | Firebase',
       linkedIn: 'https://www.linkedin.com/in/junaid-iqbal-b240b5158/',
-      imageUrl: './assets/images/team/DSC_6166aa.png'
+      imageUrl: './assets/images/team/junaid.png'
     },
     {
       name: 'Muhammad Awais',
@@ -48,6 +48,12 @@ export class DataHelperService {
       designation: 'Software Engineer | Angular | Firebase',
       linkedIn: 'https://www.linkedin.com/in/umair-ejaz-597a151a2/',
       imageUrl: './assets/images/team/Umair.jpg'
+    },
+    {
+      name: 'Haseeb Ikram',
+      designation: 'IT Analyst | Project Management',
+      linkedIn: 'https://www.linkedin.com/in/haseebikram',
+      imageUrl: './assets/images/team/haseeb.jpeg'
     },
     {
       name: 'Marwa Qureshi',

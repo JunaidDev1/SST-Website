@@ -1,0 +1,45 @@
+.portfolioItem {
+    position: relative;
+    img {
+        width: 70%;
+    }
+    .techSection {
+        display: flex;
+        .techBlock {
+            margin: 10px 16px;
+            text-align: center;
+            img {
+                width: 50px;
+            }
+            p {
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+.mobileView {
+    display: none;
+    .techSection {
+        justify-content: center;
+        .techBlock {
+            margin: 10px 16px;
+            text-align: center;
+            p {
+                font-size: 12px;
+            }
+            img {
+                width: 30px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .webView {
+        display: none;
+    }
+    .mobileView {
+        display: block;
+    }
+}

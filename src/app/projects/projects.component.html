@@ -5,14 +5,46 @@
     <div class="overlayBanner"></div>
 </div>
 
-<div class="site-heading text-center my-5 py-5">
+<div class="site-heading text-center mt-5 py-5">
     <h2 class="text-uppercase bold primary">Our Projects</h2>
     <h3 class="bold text-dark my-3 pb-3">The work we're proud of</h3>
 </div>
 
-<div class="text-center my-5">
-    <img class="mb-5 w-25 rounded-30"
-        src="https://i.pinimg.com/originals/bf/45/72/bf45724399d8ab9aa70a633c0555a97d.gif">
+<div *ngFor="let project of allProjects" class="portfolioItem mobileView text-center pt-5">
+    <img [src]="project.icon">
+    <div class="col-md-6 p-4 bgLight rounded mt-2">
+        <h4>{{project.title}}</h4>
+        <p class="mb-4 mt-3">
+            <small>{{project.description}}</small>
+        </p>
+    </div>
+    <div class="techSection mt-2">
+        <div *ngFor="let tech of project.techStack" class="techBlock">
+            <img [src]="tech.logo">
+            <p>{{tech.label}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="m-5 px-5 mt-0 webView">
+    <div *ngFor="let project of allProjects; even as isEven" class="row portfolioItem py-5 mb-5">
+        <div *ngIf="!isEven" class="col-md-6 text-center">
+            <img [src]="project.icon">
+        </div>
+        <div class="col-md-6 p-3 bgLight rounded">
+            <h2>{{project.title}}</h2>
+            <p class="mb-4 mt-3">{{project.description}}</p>
+            <div class="techSection">
+                <div *ngFor="let tech of project.techStack" class="techBlock">
+                    <img [src]="tech.logo">
+                    <p>{{tech.label}}</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isEven" class="col-md-6 text-center">
+            <img [src]="project.icon">
+        </div>
+    </div>
 </div>
 
 <app-footer></app-footer>
