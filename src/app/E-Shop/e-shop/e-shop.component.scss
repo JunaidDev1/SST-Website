@@ -1,0 +1,234 @@
+.homeHeader {
+    position: relative;
+    background: linear-gradient(90deg, #163b77 0%, #0fa8e0 100%);
+    padding: 7em 5em;
+    justify-content: center;
+    height: 80vh;
+
+    .absoluteContainer {
+        z-index: 9;
+        width: 100%;
+        position: absolute;
+        left: 0;
+
+        .bannerContent {
+            max-width: 65vw;
+            margin: auto;
+
+            .content {
+                margin-top: 12vh;
+                h4 {
+                    --animate-duration: 0.5s;
+                }
+                h2 {
+                    font-size: 55px;
+                }
+                .btn-outline-light {
+                    border-radius: 30px;
+
+                    &:hover {
+                        color: var(--blackColor);
+                        background-color: var(--whiteColor);
+                        transition: 1s;
+                    }
+                }
+                .video-play-button {
+                    margin-left: 2em;
+                    position: relative;
+                    cursor: pointer;
+                    img {
+                        width: 90px;
+                        height: 90px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                    i {
+                        font-size: 30px;
+                        position: absolute;
+                        left: 37%;
+                        top: -3px;
+                        color: #ffffff !important;
+                    }
+                }
+            }
+            .techIllustration {
+                margin-top: 2rem;
+                width: 60%;
+            }
+        }
+    }
+
+    .fixed-shape {
+        img {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 0;
+        }
+    }
+}
+
+.servicesContainer {
+    position: relative;
+    padding: 5em 0;
+
+    .curvedImage {
+        position: absolute;
+        z-index: -1;
+    }
+
+    .single-item {
+        cursor: pointer;
+        position: relative;
+        .icon {
+            width: 40%;
+            i {
+                font-size: 25px;;
+                color: var(--lightColor);
+            }
+        }
+
+        .onHoverOverlay {
+            display: none !important;
+            position: absolute;
+            top: 0;
+            width: 96%;
+            opacity: 0.5;
+        }
+    }
+
+    .single-item:hover {
+        h4,
+        p {
+            color: #ffffff !important;
+        }
+        .item {
+            z-index: 0;
+            background: transparent !important;
+
+            &.onHoverOverlay {
+                z-index: -1 !important;
+                display: flex !important;
+                background: linear-gradient(90deg, #163b77 0%, #0fa8e0 100%) !important;
+            }
+        }
+    }
+}
+
+.reviewsSection {
+    .rtin-item {
+        margin-bottom: 1.75rem;
+        padding: 3.75rem 2.5rem 1.875rem;
+        position: relative;
+        background-color: var(--lightColor);
+        border-radius: 0.25rem;
+    }
+    .rtin-item:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        background-color: var(--darkGray);
+        opacity: 0.03;
+        width: calc(100% - 40px);
+        bottom: -0.9375rem;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        height: 100%;
+        border-radius: 0.25rem;
+    }
+    .rtin-item .media {
+        margin-bottom: 1.475rem;
+    }
+    .media {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: start;
+        align-items: flex-start;
+    }
+    .rtin-item .rating {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        top: 4.375rem;
+        right: 3.125rem;
+    }
+    ul.rating {
+        margin-bottom: 15px;
+        padding: 0;
+        list-style: none;
+    }
+    .rtin-item .rtin-icon {
+        position: absolute;
+        z-index: 0;
+        right: 2.5rem;
+        bottom: 1.5625rem;
+        color: var(--blackColor);
+        opacity: 0.05;
+    }
+    .media-body {
+        margin-left: 10px;
+    }
+    .rtin-title {
+        margin: 0px;
+    }
+    .rtin-thumb {
+        .attachment-thumbnail {
+            border-radius: 30%;
+        }
+    }
+}
+
+// ========== MOBILE RESPONSIVENESS
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+    .homeHeader {
+        .absoluteContainer {
+            .bannerContent {
+                max-width: 75vw;
+                .content {
+                    margin-top: 3vh;
+                    h2 {
+                        font-size: 35px;
+                    }
+                }
+                .techIllustration {
+                    // margin-top: 3em;
+                    width: 60%;
+                }
+            }
+        }
+    }
+
+    .servicesContainer {
+        padding: 2em 0;
+
+        .curvedImage {
+            width: 100%;
+        }
+
+        .single-item {
+            .icon {
+                display: none;
+            }
+        }
+    }
+
+    .reviewsSection {
+        .rtin-item .media {
+            display: block;
+            text-align: center;
+        }
+        .rtin-item .rating {
+            position: initial;
+        }
+    }
+}

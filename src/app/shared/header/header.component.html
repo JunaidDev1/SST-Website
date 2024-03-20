@@ -2,18 +2,22 @@
     <div class="container-fluid">
         <div class="navbar-brand pointer" routerLink="/home">
             <img src="./assets/images/logo.png">
-            <h5 class="text-white">Soft Sync <br>Technologies</h5>
+            <h5 *ngIf="key === 'e-shop'" class="text-white">Soft Sync <br>Products</h5>
+            <h5 *ngIf="key !== 'e-shop'"class="text-white">Soft Sync <br>Technologies</h5>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ms-auto">
-                <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                <!-- <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Home</a>
+                </li> -->
+                <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">E-Shop</a>
                 </li>
                 <li [routerLink]="['/services']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
-                    <a class="nav-link text-white text-uppercase">Services</a>
+                    <a class="nav-link text-white text-uppercase">IT Services</a>
                 </li>
                 <li [routerLink]="['/our-team']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Team</a>

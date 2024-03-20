@@ -15,6 +15,8 @@ import { OurTeamComponent } from './our-team/our-team.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './components/team/team.component';
+import { EShopComponent } from './e-shop/e-shop/e-shop.component';
+import { ProductsComponent } from './e-shop/products/products/products.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { TeamComponent } from './components/team/team.component';
     OurTeamComponent,
     ContactUsComponent,
     TeamComponent,
+    EShopComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,14 +5,16 @@ import { HomeComponent } from './home/home.component';
 import { OurTeamComponent } from './our-team/our-team.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ServicesComponent } from './services/services.component';
+import { EShopComponent } from './e-shop/e-shop/e-shop.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  // { path: 'home', component: HomeComponent },
+  { path: 'e-shop', component: EShopComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'our-team', component: OurTeamComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/e-shop', pathMatch: 'full' },
 ];
 
 @NgModule({
