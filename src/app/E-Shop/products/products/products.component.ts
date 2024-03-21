@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,25 +10,17 @@ export class ProductsComponent implements OnInit {
   allProducts = [];
   loading: boolean = false;
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
+    // this.postData();
     // this.getAllProducts();
   }
-  // getAllProducts() {
-  //   var self = this;
-  //   this.loading = true;
-  //   firebase.database().ref().child('products')
-  //     .once('value', (snapshot) => {
-  //       var data = snapshot.val();
-  //       for (var key in data) {
-  //         var temp = data[key];
-  //         temp.key = key;
-  //         self.allProducts.push(temp);
-  //       }
-  //       self.service.allProducts = self.allProducts;
-  //       self.loading = false;
-  //     })
-  // }
+  postData(){
+    this.http.post('https://sst-website-890d6-default-rtdb.firebaseio.com/users.json',[{name:'umair',age:28}]).subscribe(res =>{
+      console.log('testtt',res)
+    })
+    
+  }
 
 }

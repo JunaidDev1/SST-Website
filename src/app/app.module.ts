@@ -17,6 +17,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TeamComponent } from './components/team/team.component';
 import { EShopComponent } from './e-shop/e-shop/e-shop.component';
 import { ProductsComponent } from './e-shop/products/products/products.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { ProductsComponent } from './e-shop/products/products/products.component
     ProductsComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -40,6 +44,7 @@ import { ProductsComponent } from './e-shop/products/products/products.component
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
