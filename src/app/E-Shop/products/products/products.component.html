@@ -1,19 +1,17 @@
 <div class="container-fluid">
-    
-    <!-- <div class="col text-end">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">
-            <i class="fa fa-circle"></i> Add Product
-        </button>
-    </div> -->
-
     <div class="productsBlock p-2">
-        <h4>Featured Products</h4>
+            <!-- <div class="col text-end">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">
+                        <i class="fa fa-circle"></i> Add Product
+                    </button>
+                </div> -->
+        <h5>Our Featured Products</h5>
         <div id="carouselFeatured" class="carousel slide p-2" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
-                        <div class="col-md-2 p-2" *ngFor="let featured of myLocalArray">
-                            <div class="card h-100">
+                        <div class="col-md-3 p-2 mt-2 mb-2" *ngFor="let featured of myLocalArray; let i = index">
+                            <div class="card">
                                 <img [src]="featured.picture" class="card-img-top" alt="{{ featured.name }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ featured.name }}</h5>
@@ -27,54 +25,22 @@
                                 </div>
                             </div>
                         </div>
-                                      
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeatured" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeatured" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon text-secondary" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselFeatured" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon text-secondary" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
-            </button>
+            </button> -->
         </div>
     </div>
-    
-    <!-- <div class="productsBlock mt-4">
-        <h4>Other Products</h4>
-        <div id="carouselProducts" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-3" *ngFor="let products of myLocalArray">
-                            <div class="card">
-                                <img [src]="products.picture" class="card-img-top" alt="{{ products.name }}">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ products.name }}</h5>
-                                    <p class="card-text">{{ products.description }}</p>
-                                    <p class="card-text">{{ products.price | currency: 'USD' }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div> -->
-    
 </div>
+
+
 
 <!----------------------------------------------------------- NEW MODAL FORM DETAILS---------- ----------------------------------->
 <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
