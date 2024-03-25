@@ -1,7 +1,8 @@
 export class productData {
-    name: any;
-    price: any;
-    description: any;
-    id?: any;
-    picture?: any;
+    name?: string;
+    price?: string;
+    description?: string;
+    id?: string;
+    picture?: string;
+    category?: string;
 }

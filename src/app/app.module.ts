@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { SearchfilterPipe } from './searchfilter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartComponent } from './E-shop/cart/cart/cart.component';
+import { CheckoutComponent } from './E-shop/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TeamComponent,
     EShopComponent,
     ProductsComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

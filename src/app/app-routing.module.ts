@@ -6,6 +6,8 @@ import { OurTeamComponent } from './our-team/our-team.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ServicesComponent } from './services/services.component';
 import { EShopComponent } from './e-shop/e-shop/e-shop.component';
+import { CartComponent } from './E-shop/cart/cart/cart.component';
+import { CheckoutComponent } from './E-shop/checkout/checkout.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'our-team', component: OurTeamComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: '/e-shop', pathMatch: 'full' },
 ];
 

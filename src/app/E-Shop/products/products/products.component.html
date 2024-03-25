@@ -1,10 +1,10 @@
 <div class="container-fluid">
     
-    <div class="col text-end">
+    <!-- <div class="col text-end">
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">
             <i class="fa fa-circle"></i> Add Product
         </button>
-    </div>
+    </div> -->
 
     <div class="productsBlock p-2">
         <h4>Featured Products</h4>
@@ -118,6 +118,14 @@
                                 description.
                             </div>
                         </div> -->
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="category">Category</label>
+                        <select class="form-control" id="category" formControlName="category">
+                            <option value="clothing">Clothing</option>
+                            <option value="grocery">Grocery</option>
+                            <option value="boots">Boots</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="price">Price</label>

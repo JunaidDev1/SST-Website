@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
   url: any;
   deleted: any;
   selectedItem: any;
+  cartItems: any;
 
 
   constructor(
@@ -46,14 +47,18 @@ export class ProductsComponent implements OnInit {
       name: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      picture: new FormControl('')
+      picture: new FormControl(''),
+      category: new FormControl(''),
+      id: new FormControl('')
     });
 
     this.editForm = new FormGroup({
       name: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      picture: new FormControl('')
+      picture: new FormControl(''),
+      category: new FormControl(''),
+      id: new FormControl('')
     });
 
   }
@@ -172,7 +177,8 @@ export class ProductsComponent implements OnInit {
     }
     this.productImage = '';
   }
-  addToCart(id: string){
-    
+  addToCart(product: productData){
+    this.apiService.addToCart(product);
   }
+
 }

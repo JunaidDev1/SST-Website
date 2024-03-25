@@ -10,7 +10,7 @@ export class SearchfilterPipe implements PipeTransform {
     if (!myLocalArray || !searchValue){
       return myLocalArray;
     }
-    return myLocalArray.filter(data => 
+    return myLocalArray.filter((data: any) => 
       data.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
       data.description.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
       data.price.toString().toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())

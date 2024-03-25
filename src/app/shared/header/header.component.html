@@ -28,6 +28,12 @@
                 <li [routerLink]="['/contact-us']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Contact Us</a>
                 </li>
+                <li class="nav-item px-2 pointer">
+                    <button class="btn btn-link text-white" (click)="openCartDialog()">
+                        <i class="bi bi-cart"></i>
+                        <span class="badge bg-primary">{{ apiService.getCartItemsCount() }}</span>
+                    </button>
+                </li>
             </ul>
         </div>
     </div>

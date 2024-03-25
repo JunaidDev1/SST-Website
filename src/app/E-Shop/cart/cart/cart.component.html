@@ -1,0 +1,45 @@
+<div class="container mt-4 mb-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div *ngIf="cartItems.length > 0; else emptyCart">
+                <h2 class="text-center mb-4">Your Cart <i class="bi bi-cart"></i></h2>
+                <div class="row text-center">
+                    <div class="col-md-12" *ngFor="let item of cartItems">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img [src]="item.picture" class="img-fluid rounded-start" alt="{{ item.name }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ item.name }} <span class="badge bg-secondary">{{ item.quantity }}</span></h5>
+                                        <p class="card-text">{{ item.description }}</p>
+                                        <p class="card-text">{{ item.price | currency: 'USD' }}</p>
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-outline-danger me-1" (click)="removeOne(item)"><i class="bi bi-dash"></i></button>
+                                            <button class="btn btn-outline-success" (click)="addToCart(item)"><i class="bi bi-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary me-3" (click)="proceedToCheckout()">Proceed to Checkout</button>
+                    <button class="btn btn-secondary" (click)="continueShopping()">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="text-center">Your cart is empty.</p>
+            </div>
+        </div>
+    </div>
+</ng-template>
