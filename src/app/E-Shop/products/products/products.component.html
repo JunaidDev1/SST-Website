@@ -1,7 +1,141 @@
-    <!-- Products for you -->
-    <div class="productsBlock">
-        <h4>Products for you</h4>
-        <div class="row">       
+<div class="container-fluid">
+    
+    <div class="col text-end">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">
+            <i class="fa fa-circle"></i> Add Product
+        </button>
+    </div>
 
+    <div class="productsBlock p-2">
+        <h4>Featured Products</h4>
+        <div id="carouselFeatured" class="carousel slide p-2" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-2 p-2" *ngFor="let featured of myLocalArray">
+                            <div class="card h-100">
+                                <img [src]="featured.picture" class="card-img-top" alt="{{ featured.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ featured.name }}</h5>
+                                    <p class="card-text">{{ featured.description }}</p>
+                                    <p class="card-text">{{ featured.price | currency: 'USD' }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary btn-block" (click)="addToCart(featured)">
+                                        <i class="bi bi-cart-plus"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                                      
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselFeatured" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselFeatured" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
+    
+    <!-- <div class="productsBlock mt-4">
+        <h4>Other Products</h4>
+        <div id="carouselProducts" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-3" *ngFor="let products of myLocalArray">
+                            <div class="card">
+                                <img [src]="products.picture" class="card-img-top" alt="{{ products.name }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ products.name }}</h5>
+                                    <p class="card-text">{{ products.description }}</p>
+                                    <p class="card-text">{{ products.price | currency: 'USD' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div> -->
+    
+</div>
+
+<!----------------------------------------------------------- NEW MODAL FORM DETAILS---------- ----------------------------------->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLongTitle">Enter New Product Data</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm();"
+                    aria-label="Close"></button>
+            </div>
+            <!-- New Product Modal Form Starts Here -->
+            <div class="modal-body">
+                <form [formGroup]="productForm">
+                    <!-- Image Upload Button -->
+                    <div style="text-align: center;" class="avatar">
+                        <img *ngIf="productImage" [src]="productImage" alt="avatar"
+                            style="width: 80px; height: 80px; object-fit: cover;" class="rounded-circle" />
+                    </div>
+                    <div style="text-align:center; margin: 5px;">
+                        <label for="file-upload" class="custom-file-upload btn btn-default" style="text-align: center">
+                            <i class="fa fa-image fa-2xl"></i> Image
+                        </label>
+                        <input id="file-upload" type="file" formArrayName="picture" (change)="addImage($event)" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="name">Name</label>
+                        <input type="name" class="form-control" id="name" formControlName="name"
+                            placeholder="Enter Product Name">
+                        <!-- <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                            <div *ngIf="f.name.errors && f.name.errors.required">Name is required.</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="description">Description</label>
+                        <input type="description" class="form-control" id="description" formControlName="description"
+                            placeholder="Enter description">
+                        <!-- <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                            <div *ngIf="f.description.errors && f.description.errors.required">description is required.
+                            </div>
+                            <div *ngIf="f.description.errors && f.description.errors.pattern">Please Enter valid
+                                description.
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" formControlName="price"
+                            placeholder="Enter Valid price Number">
+                        <!-- <div *ngIf="f.price.touched && f.price.invalid" class="alert alert-danger">
+                            <div *ngIf="f.price.errors && f.price.errors.required">price Number is required.</div>
+                        </div> -->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="clear" class="btn btn-light" data-dismiss="modal"
+                    (click)="resetForm()">Reset</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)=uploadDataoFireStorage()>Add
+                    Details</button>
+            </div>
+        </div>
+    </div>
+</div>
