@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private apiService: ApiService,
+    public apiService: ApiService,
     private storage: AngularFireStorage,
     private router: Router,
   ) {
@@ -177,7 +177,7 @@ export class ProductsComponent implements OnInit {
     }
     this.productImage = '';
   }
-  addToCart(product: productData){
+  addToCart(product: productData) {
     this.apiService.addToCart(product);
   }
 

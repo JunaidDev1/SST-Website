@@ -9,16 +9,20 @@ import { ApiService } from '../api.service';
 })
 export class HeaderComponent implements OnInit {
   key: any;
-
+  ageedToTerms: boolean = false;
   constructor(private route: Router, public router: ActivatedRoute, public apiService: ApiService) {
     this.key = router.snapshot.routeConfig?.path;
-   }
+  }
 
   ngOnInit(): void {
   }
 
   openCartDialog() {
     this.route.navigate(['/cart']);
+  }
+
+  removeItem(item: any) {
+    this.apiService.removeFromCart(item);
   }
 
 }

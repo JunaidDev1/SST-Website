@@ -1,10 +1,18 @@
 <div class="container-fluid">
     <div class="productsBlock p-2">
-            <!-- <div class="col text-end">
+
+        <div *ngIf="apiService.showSuccessAlert" class="alert alert-success alert-dismissible fade show">
+            <button (click)="apiService.showSuccessAlert = false" type="button" class="btn-close"
+                data-bs-dismiss="alert"></button>
+            <strong>Success!</strong> Product has been added to your shopping cart.
+        </div>
+
+        <!-- <div class="col text-end">
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">
                         <i class="fa fa-circle"></i> Add Product
                     </button>
                 </div> -->
+
         <h5>Our Featured Products</h5>
         <div id="carouselFeatured" class="carousel slide p-2" data-bs-ride="carousel">
             <div class="carousel-inner">

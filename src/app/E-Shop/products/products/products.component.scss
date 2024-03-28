@@ -8,3 +8,10 @@
     height: 300px;
     object-fit: cover;
 }
+
+.alert-success {
+    position: fixed;
+    top: 2em;
+    right: 1em;
+    z-index: 99999;
+}

@@ -3,7 +3,7 @@
         <div class="navbar-brand pointer" routerLink="/home">
             <img src="./assets/images/logo.png">
             <h5 *ngIf="key === 'e-shop'" class="text-white">Soft Sync <br>Products</h5>
-            <h5 *ngIf="key !== 'e-shop'"class="text-white">Soft Sync <br>Technologies</h5>
+            <h5 *ngIf="key !== 'e-shop'" class="text-white">Soft Sync <br>Technologies</h5>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -29,10 +29,39 @@
                     <a class="nav-link text-white text-uppercase">Contact Us</a>
                 </li>
                 <li class="nav-item px-2 pointer">
-                    <button class="btn btn-link text-white p-0" (click)="openCartDialog()">
-                        <i style="font-size: 23px;" class="bi bi-cart"></i>
-                        <span class="badge bg-primary">{{ apiService.getCartItemsCount() }}</span>
-                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-link text-white p-0">
+                            <i style="font-size: 23px;" class="bi bi-cart"></i>
+                            <span class="badge bg-primary">{{ apiService.getCartItemsCount() }}</span>
+                        </button>
+                        <div class="dropdown-content shadow p-3">
+                            <div *ngFor="let item of apiService.cartItems" class="row border-bottom mb-3">
+                                <div class="d-flex p-0">
+                                    <img class="productImg" [src]="item.picture">
+                                    <div style="width: 100%;">
+                                        <p class="description my-1">{{item.name}}</p>
+                                        <p class="price">
+                                            <span class="text-secondary">{{item.quantity}}</span> X
+                                            {{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}
+                                            <span (click)="removeItem(item)"
+                                                class="float-end pointer text-danger">X</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check">
+                                <input [(ngModel)]="ageedToTerms" class="form-check-input radio-input pointer"
+                                    type="checkbox" name="agreeToTerms" id="agreeToTerms">
+                                <label class="form-check-label pointer" for="agreeToTerms">
+                                    <small>I agree with the terms and conditions</small>
+                                </label>
+                            </div>
+                            <button routerLink="/checkout" [disabled]="!ageedToTerms || !apiService.cartItems.length"
+                                class="btn btn-success w-100 my-3">Checkout Now</button>
+                            <button (click)="openCartDialog()" class="btn btn-outline-primary w-100">View Cart</button>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

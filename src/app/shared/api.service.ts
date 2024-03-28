@@ -13,6 +13,7 @@ export class ApiService {
   productId$ = this.productId.asObservable();
   cartItems: any[] = [];
   taxesFee = 2.98;
+  showSuccessAlert = false;
 
   constructor(
     private firebaseDb: AngularFireDatabase,
@@ -68,6 +69,10 @@ export class ApiService {
       this.cartItems.push(newItem);
     }
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    this.showSuccessAlert = true;
+    setTimeout(() => {
+      this.showSuccessAlert = false;
+    }, 2000);
   }
 
   getCartItems() {
