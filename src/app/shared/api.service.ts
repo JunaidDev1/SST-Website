@@ -12,6 +12,7 @@ export class ApiService {
   private productId = new BehaviorSubject<string>('');
   productId$ = this.productId.asObservable();
   cartItems: any[] = [];
+  taxesFee = 2.98;
 
   constructor(
     private firebaseDb: AngularFireDatabase,
@@ -57,39 +58,64 @@ export class ApiService {
     const uniqueId = `${prefix}_${timestamp}_${random}`;
     return uniqueId;
   }
+
   addToCart(product: productData) {
-    const existingItem = this.cartItems.find(item => item.id === product.id);
+    const existingItem = this.getCartItems().find(item => item.id === product.id);
     if (existingItem) {
       existingItem.quantity++;
     } else {
       const newItem = { ...product, quantity: 1 };
       this.cartItems.push(newItem);
     }
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   getCartItems() {
+    const items = localStorage.getItem('cartItems');
+    this.cartItems = items ? JSON.parse(items) : [];
     return this.cartItems;
   }
+
   getCartItemsCount(): number {
-    return this.cartItems.reduce((total, item) => total + item.quantity, 0);
+    return this.getCartItems().reduce((total, item) => total + item.quantity, 0);
   }
+
+  getOneItemTotalPrice(item: any): number {
+    return item.price * item.quantity;
+  }
+
+  getSubTotal(): number {
+    let sum = 0;
+    this.cartItems.forEach(x => {
+      sum += this.getOneItemTotalPrice(x);
+    });
+    return sum;
+  }
+
+  clearCart() {
+    localStorage.removeItem('cartItems');
+  }
+
   removeFromCart(item: any): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+    const index = this.getCartItems().findIndex(cartItem => cartItem.id === item.id);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
   }
 
   removeOneFromCart(item: any): void {
-    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+    const index = this.getCartItems().findIndex(cartItem => cartItem.id === item.id);
     if (index !== -1) {
       if (this.cartItems[index].quantity > 1) {
         this.cartItems[index].quantity--;
       } else {
         this.cartItems.splice(index, 1);
       }
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     }
   }
+
   processCheckout(checkoutData: any): Observable<any> {
     const checkoutUrl = ''; // junaid bhai  need to write api for payment method.
     return this.http.post(checkoutUrl, checkoutData);

@@ -1,8 +1,15 @@
-<div class="container mt-4 mb-4">
+<app-header></app-header>
+<div class="headerBg"></div>
+
+<div class="container mt-5 mb-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div *ngIf="cartItems.length > 0; else emptyCart">
-                <h2 class="text-center mb-4">Your Cart <i class="bi bi-cart"></i></h2>
+                <h2 class="mb-4">My Cart <i class="bi bi-cart"></i>
+                    <button (click)="clearCart()" class="btn btn-danger btn-sm float-end me-3">
+                        <i class="fa fa-trash"></i> Empty Cart
+                    </button>
+                </h2>
                 <div class="row text-center">
                     <div class="col-md-12" *ngFor="let item of cartItems">
                         <div class="card mb-3">
@@ -12,12 +19,18 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ item.name }} <span class="badge bg-secondary">{{ item.quantity }}</span></h5>
+                                        <h5 class="card-title">{{ item.name }} <span class="badge bg-secondary">{{
+                                                item.quantity }}</span></h5>
                                         <p class="card-text">{{ item.description }}</p>
-                                        <p class="card-text">{{ item.price | currency: 'USD' }}</p>
+                                        <p class="card-text">
+                                            {{ item.price | currency: 'USD' }} X {{ item.quantity }} =
+                                            {{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}
+                                        </p>
                                         <div class="d-flex justify-content-center">
-                                            <button class="btn btn-outline-danger me-1" (click)="removeOne(item)"><i class="bi bi-dash"></i></button>
-                                            <button class="btn btn-outline-success" (click)="addToCart(item)"><i class="bi bi-plus"></i></button>
+                                            <button class="btn btn-outline-danger me-1" (click)="removeOne(item)"><i
+                                                    class="bi bi-dash"></i></button>
+                                            <button class="btn btn-outline-success" (click)="addToCart(item)"><i
+                                                    class="bi bi-plus"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -25,9 +38,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button class="btn btn-primary me-3" (click)="proceedToCheckout()">Proceed to Checkout</button>
-                    <button class="btn btn-secondary" (click)="continueShopping()">Continue Shopping</button>
+                <div class="text-end pe-2">
+                    <button class="btn btn-secondary me-3" (click)="continueShopping()">Continue Shopping</button>
+                    <button class="btn btn-primary" (click)="proceedToCheckout()">Proceed to Checkout</button>
                 </div>
             </div>
         </div>
@@ -38,7 +51,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <p class="text-center">Your cart is empty.</p>
+                <div class="alert alert-danger mt-5">
+                    <strong>Cart! </strong> Your cart is empty. <a routerLink="/home" class="alert-link">Shop Now</a>
+                </div>
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/shared/api.service';
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
 
-  constructor(private apiService: ApiService, private route: Router) { }
+  constructor(public apiService: ApiService, private route: Router) { }
 
   ngOnInit(): void {
     this.cartItems = this.apiService.getCartItems();
@@ -33,6 +33,11 @@ export class CartComponent implements OnInit {
   }
   continueShopping(): void {
     this.route.navigate(['/e-shop']);
+  }
+
+  clearCart() {
+    this.cartItems = [];
+    this.apiService.clearCart();
   }
 
 }

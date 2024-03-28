@@ -33,6 +33,16 @@
     .nav-link:hover:after {
         transform: scaleX(1);
     }
+
+    .btn-link {
+        position: relative;
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -14px;
+            border-radius: 20px;
+        }
+    }
 }
 
 @media (max-width: 768px) {
