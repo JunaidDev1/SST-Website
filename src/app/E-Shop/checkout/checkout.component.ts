@@ -62,7 +62,9 @@ export class CheckoutComponent implements OnInit {
     "Wyoming"
   ];
 
-  checkoutData: any = {};
+  checkoutData: any = {
+    totalAmount: 0.1
+  };
   cartItems: any[] = [];
 
   constructor(
@@ -78,9 +80,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitCheckoutForm(): void {
-    this.apiService.processCheckout(this.checkoutData).subscribe(response => {
-      console.log(response);
-    });
+    this.apiService.processCheckout(this.checkoutData)
+      .then(response => {
+        console.log(response);
+      });
   }
 
 }

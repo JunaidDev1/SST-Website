@@ -72,7 +72,7 @@ export class ApiService {
     this.showSuccessAlert = true;
     setTimeout(() => {
       this.showSuccessAlert = false;
-    }, 2000);
+    }, 3000);
   }
 
   getCartItems() {
@@ -121,9 +121,27 @@ export class ApiService {
     }
   }
 
-  processCheckout(checkoutData: any): Observable<any> {
-    const checkoutUrl = ''; // junaid bhai  need to write api for payment method.
-    return this.http.post(checkoutUrl, checkoutData);
+  processCheckout(checkoutData: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      var handler = (<any>window).StripeCheckout.configure({
+        key: 'pk_live_51OzfAlJktJ5J96EDpvA6d799qCyVN0L9wyfDDNkyByVJfW4KBKLpMsje8ktnsUGk6VKNn61cyJv1lsYHnWqIAHvf00wliOD3do',
+        locale: 'auto',
+        token: (token: any) => {
+          console.log(token);
+          resolve('success');
+        },
+        closed: () => {
+          reject(
+            new Error('Payment Cancelled')
+          );
+        }
+      });
+      handler.open({
+        name: 'Stripe Payment',
+        description: 'Stripe Payment Description',
+        amount: checkoutData.totalAmount * 100
+      });
+    });
   }
 
 }

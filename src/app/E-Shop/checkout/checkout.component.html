@@ -323,12 +323,9 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
-        <button
+        <button (click)="submitCheckoutForm()"
             style="width: 100% !important;background-color: rgb(89 47 244) !important;color: white !important;height: 45px !important"
             class="btn btn-primary mb-5">
             {{ selectedPaymentMethod === 'paypal' ? 'Pay with PayPal' : 'Pay now' }}
