@@ -8,6 +8,7 @@ import { ServicesComponent } from './services/services.component';
 import { EShopComponent } from './e-shop/e-shop/e-shop.component';
 import { CartComponent } from './E-shop/cart/cart/cart.component';
 import { CheckoutComponent } from './E-shop/checkout/checkout.component';
+import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout-old', component: CheckoutOldComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: '/e-shop', pathMatch: 'full' },
 ];

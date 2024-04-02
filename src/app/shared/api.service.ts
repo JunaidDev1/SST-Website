@@ -3,12 +3,17 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { productData } from './products.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+
+  private apiUrl = 'https://api.paypal.com'; // For sandbox environment, change to live for production
+  private clientId = 'AXR7BvEPLkQIkGk4-U-nF3u_s-fvAfROGZQJpJ5lcGvyingP2MUeilnpacsicSlwvgJWUEY9WqJinF5s';
+  private secret = 'ENk8_8KsG1N7QlmaXHVHMkevZBt-Nnz1ual25enp2p6qROgVgLf-3TMt9IkwSjflhVTolknhqPh4o1ei';
+
   private productId = new BehaviorSubject<string>('');
   productId$ = this.productId.asObservable();
   cartItems: any[] = [];
@@ -121,7 +126,7 @@ export class ApiService {
     }
   }
 
-  processCheckout(checkoutData: any): Promise<any> {
+  processStripePayment(checkoutData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       var handler = (<any>window).StripeCheckout.configure({
         key: 'pk_live_51OzfAlJktJ5J96EDpvA6d799qCyVN0L9wyfDDNkyByVJfW4KBKLpMsje8ktnsUGk6VKNn61cyJv1lsYHnWqIAHvf00wliOD3do',
@@ -142,6 +147,37 @@ export class ApiService {
         amount: checkoutData.totalAmount * 100
       });
     });
+  }
+
+  processPaypalPayment(cardNumber: string, expiryDate: string, cvv: string, amount: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa(this.clientId + ':' + this.secret)
+    });
+
+    const body = {
+      intent: 'sale',
+      payer: {
+        payment_method: 'credit_card',
+        funding_instruments: [{
+          credit_card: {
+            number: cardNumber,
+            type: 'visa', // Or any other card type
+            expire_month: expiryDate.split('/')[0],
+            expire_year: '20' + expiryDate.split('/')[1],
+            cvv2: cvv
+          }
+        }]
+      },
+      transactions: [{
+        amount: {
+          total: amount.toFixed(2),
+          currency: 'USD'
+        }
+      }]
+    };
+
+    return this.http.post<any>(`${this.apiUrl}/v1/payments/payment`, body, { headers: headers });
   }
 
 }

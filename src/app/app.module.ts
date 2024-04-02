@@ -25,6 +25,7 @@ import { SearchfilterPipe } from './searchfilter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartComponent } from './E-shop/cart/cart/cart.component';
 import { CheckoutComponent } from './E-shop/checkout/checkout.component';
+import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { CheckoutComponent } from './E-shop/checkout/checkout.component';
     ProductsComponent,
     SearchfilterPipe,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutOldComponent
   ],
   imports: [
     BrowserModule,
