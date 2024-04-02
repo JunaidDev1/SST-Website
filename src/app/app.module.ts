@@ -26,6 +26,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CartComponent } from './E-shop/cart/cart/cart.component';
 import { CheckoutComponent } from './E-shop/checkout/checkout.component';
 import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,7 @@ import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
+    NgxPayPalModule,
     HttpClientModule,
     NgxUiLoaderModule,
     AngularFireStorageModule,
