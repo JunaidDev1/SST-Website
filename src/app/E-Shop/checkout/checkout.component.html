@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="headerBg"></div>
 
-<div  class="row px-5 main-container">
+<div *ngIf="!showSuccessPopup" class="row px-5 main-container">
 
     <div *ngIf="showErrorAlert" class="alert alert-danger alert-dismissible fade show">
         <button (click)="apiService.showSuccessAlert = false" type="button" class="btn-close"
