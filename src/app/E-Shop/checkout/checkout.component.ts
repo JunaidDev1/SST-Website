@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/api.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -11,9 +12,14 @@ export class CheckoutComponent implements OnInit {
 
   payPalConfig?: IPayPalConfig;
   cartItems: any[] = [];
+  alertMsg = '';
+  showErrorAlert = false;
+  showSuccessPopup = false;
+  orderId = '';
 
   constructor(
-    public apiService: ApiService
+    public apiService: ApiService,
+    public router: Router
   ) {
     this.cartItems = apiService.getCartItems();
   }
@@ -31,11 +37,11 @@ export class CheckoutComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: 'USD',
-            value: '0.1',
+            value: '1',
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: '0.1'
+                value: '1'
               }
             }
           },
@@ -45,7 +51,7 @@ export class CheckoutComponent implements OnInit {
             category: 'DIGITAL_GOODS',
             unit_amount: {
               currency_code: 'USD',
-              value: '0.1',
+              value: '1',
             },
           }]
         }]
@@ -65,21 +71,36 @@ export class CheckoutComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        // this.showSuccess = true;
+        this.saveDataIntoFirebase();
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        // this.showCancel = true;
+        this.alertMsg = 'Payment cancelled';
+        this.showErrorAlert = true;
+        setTimeout(() => {
+          this.showErrorAlert = false;
+        }, 3000);
       },
       onError: err => {
         console.log('OnError', err);
-        // this.showError = true;
+        this.alertMsg = 'Payment error';
+        this.showErrorAlert = true;
+        setTimeout(() => {
+          this.showErrorAlert = false;
+        }, 3000);
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
-        // this.resetStatus();
       }
     };
+  }
+
+  //TODO: Here we're gonna create an order object having user id and payment id with other info
+  saveDataIntoFirebase() {
+    this.orderId = '1234567890'; // Will be dynamic order id based on firebase key
+    this.apiService.clearCart();
+    this.showSuccessPopup = true;
+    alert('Payment Success, we will save actual data on firebase!');
   }
 
 }

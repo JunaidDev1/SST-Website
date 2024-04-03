@@ -1,7 +1,13 @@
 <app-header></app-header>
 <div class="headerBg"></div>
 
-<div class="row px-5 main-container">
+<div  class="row px-5 main-container">
+
+    <div *ngIf="showErrorAlert" class="alert alert-danger alert-dismissible fade show">
+        <button (click)="apiService.showSuccessAlert = false" type="button" class="btn-close"
+            data-bs-dismiss="alert"></button>
+        <strong>Error!</strong> {{alertMsg}}
+    </div>
 
     <div class="col-lg-6 px-5 left-column mt-4">
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
@@ -85,4 +91,24 @@
 
     </div>
 
+</div>
+
+<div *ngIf="showSuccessPopup" class="row justify-content-center mt-5">
+    <div class="col-md-3 text-center pt-5">
+        <div class="card shadow-sm p-5">
+            <h5>Your order has been received</h5>
+            <p class="my-3">
+                <img class="checkmarkImage"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8thit5dyK9T3sljabIz7WadrbDt8nJgCJ8aXHsxWR8A&s">
+            </p>
+            <p>Thank you for your purchase!</p>
+            <p class="font-sm my-0">
+                <small>Your order id is: {{orderId}}</small>
+            </p>
+            <p class="font-sm">
+                <small>You will receive an order confirmation email with details of your order.</small>
+            </p>
+            <p><button routerLink="/e-shop" class="btn btn-primary btn-lg">Continue Shopping</button></p>
+        </div>
+    </div>
 </div>

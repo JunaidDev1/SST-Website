@@ -60,3 +60,19 @@
 input {
     font-size: 13px !important;
 }
+
+.alert-danger {
+    position: fixed;
+    width: fit-content;
+    z-index: 999;
+    right: 1em;
+    top: 2em;
+}
+
+.checkmarkImage {
+    width: 50px;
+}
+
+.font-sm {
+    font-size: 14px;
+}
