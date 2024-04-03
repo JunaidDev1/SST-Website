@@ -9,6 +9,9 @@ import { EShopComponent } from './e-shop/e-shop/e-shop.component';
 import { CartComponent } from './E-shop/cart/cart/cart.component';
 import { CheckoutComponent } from './E-shop/checkout/checkout.component';
 import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
+import { LoginComponent } from './credentials/login/login.component';
+import { SignupComponent } from './credentials/signup/signup.component';
+import { ResetPasswordComponent } from './credentials/reset-password/reset-password.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout-old', component: CheckoutOldComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: '**', redirectTo: '/e-shop', pathMatch: 'full' },
 ];
 

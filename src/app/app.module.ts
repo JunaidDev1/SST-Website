@@ -27,6 +27,11 @@ import { CartComponent } from './E-shop/cart/cart/cart.component';
 import { CheckoutComponent } from './E-shop/checkout/checkout.component';
 import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { LoginComponent } from './credentials/login/login.component';
+import { SignupComponent } from './credentials/signup/signup.component';
+import { ResetPasswordComponent } from './credentials/reset-password/reset-password.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -44,7 +49,10 @@ import { NgxPayPalModule } from 'ngx-paypal';
     SearchfilterPipe,
     CartComponent,
     CheckoutComponent,
-    CheckoutOldComponent
+    CheckoutOldComponent,
+    LoginComponent,
+    SignupComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +68,16 @@ import { NgxPayPalModule } from 'ngx-paypal';
     NgxUiLoaderModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.threeBounce,
+      backdropBorderRadius: "4px",
+      primaryColour: "#ffffff",
+      secondaryColour: "#ffffff",
+      tertiaryColour: "#ffffff",
+      fullScreenBackdrop: true,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

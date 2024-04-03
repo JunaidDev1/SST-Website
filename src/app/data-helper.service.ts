@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataHelperService {
 
+  displayLoading: boolean;
+
   ourServices: any[] = [
     {
       title: 'IT Design',

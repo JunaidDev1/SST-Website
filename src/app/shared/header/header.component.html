@@ -29,6 +29,17 @@
                     <a class="nav-link text-white text-uppercase">Contact Us</a>
                 </li>
                 <li class="nav-item px-2 pointer">
+                    <a *ngIf="!userAuth.currentUser?.uid" class="nav-link text-white text-uppercase loginSignup">
+                        <i class="fa fa-user me-2"></i>
+                        <span routerLink="/login">Login</span>
+                        <span class="px-2">|</span>
+                        <span routerLink="/signup">Signup</span>
+                    </a>
+                    <a *ngIf="userAuth.currentUser?.uid" class="nav-link text-white text-uppercase loginSignup">
+                        <i class="fa fa-user me-2"></i> {{userAuth.currentUser.firstName | titlecase}}
+                    </a>
+                </li>
+                <li class="nav-item px-2 pointer">
                     <div class="dropdown">
                         <button class="btn btn-link text-white p-0">
                             <i style="font-size: 23px;" class="bi bi-cart"></i>

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/api.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
+import { iClientOrder } from 'src/app/shared/order';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { UserAuthService } from 'src/app/shared/user-auth.service';
+import { DataHelperService } from 'src/app/data-helper.service';
 
 @Component({
   selector: 'app-checkout',
@@ -18,10 +22,16 @@ export class CheckoutComponent implements OnInit {
   orderId = '';
 
   constructor(
+    public router: Router,
     public apiService: ApiService,
-    public router: Router
+    public firebaseDb: AngularFireDatabase,
+    public dataHelper: DataHelperService,
+    public userAuth: UserAuthService
   ) {
     this.cartItems = apiService.getCartItems();
+    if (!this.cartItems.length || !localStorage.getItem('uid')) {
+      router.navigate(['/e-shop']);
+    }
   }
 
   ngOnInit(): void {
@@ -71,7 +81,7 @@ export class CheckoutComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-        this.saveDataIntoFirebase();
+        this.saveDataIntoFirebase(data);
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
@@ -95,12 +105,25 @@ export class CheckoutComponent implements OnInit {
     };
   }
 
-  //TODO: Here we're gonna create an order object having user id and payment id with other info
-  saveDataIntoFirebase() {
-    this.orderId = '1234567890'; // Will be dynamic order id based on firebase key
-    this.apiService.clearCart();
-    this.showSuccessPopup = true;
-    alert('Payment Success, we will save actual data on firebase!');
+  saveDataIntoFirebase(paymentData: any) {
+    this.dataHelper.displayLoading = true;
+    const clientOrder: iClientOrder = {
+      paymentId: paymentData.id,
+      orderId: this.firebaseDb.database.ref().child('services').push().key,
+      clientId: this.userAuth.currentUser.uid,
+      createdOn: Number(new Date()),
+      total: this.apiService.taxesFee + this.apiService.getSubTotal(),
+      productIds: [], //TODO: Map this array from cart items
+    }
+    this.orderId = clientOrder.orderId;
+    const urlPath = `orders/${clientOrder.orderId}`;
+    this.apiService.updateDataOnFirebase(urlPath, clientOrder)
+      .then(() => {
+        this.apiService.clearCart();
+        this.showSuccessPopup = true;
+        alert('Payment Success, order saved!');
+        this.dataHelper.displayLoading = false;
+      });
   }
 
 }

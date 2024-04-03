@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { productData } from './products.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataHelperService } from '../data-helper.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,9 @@ export class ApiService {
   constructor(
     private firebaseDb: AngularFireDatabase,
     private ngxService: NgxUiLoaderService,
-    private http: HttpClient
+    public dataHelper: DataHelperService,
+    private http: HttpClient,
+    public router: Router
   ) { }
 
   getProducts(): Observable<any[]> {
@@ -65,7 +69,35 @@ export class ApiService {
     return uniqueId;
   }
 
+  async getFirebaseData(urlPath: string): Promise<any> {
+    try {
+      return this.firebaseDb.database.ref().child(urlPath)
+        .once('value', (snapshot) => {
+          return snapshot;
+        });
+    } catch (err) {
+      this.dataHelper.displayLoading = false;
+      alert('Error try again!');
+    }
+  }
+
+  async updateDataOnFirebase(urlPath: string, data: any): Promise<any> {
+    try {
+      const resp = await this.firebaseDb.database.ref().child(urlPath).set(data);
+      return resp;
+    } catch (e) {
+      this.dataHelper.displayLoading = false;
+      alert('Error try again!');
+    }
+  }
+
   addToCart(product: productData) {
+    if (!localStorage.getItem('uid')) {
+      alert('Please login or create a new account!');
+      this.router.navigate(['/login']);
+      return;
+    }
+
     const existingItem = this.getCartItems().find(item => item.id === product.id);
     if (existingItem) {
       existingItem.quantity++;
