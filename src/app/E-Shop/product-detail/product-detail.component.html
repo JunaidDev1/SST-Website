@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="headerBg"></div>
+
+<div class="container mt-5 mb-5">
+    <h5 class="ms-2 mb-3">Product Detail</h5>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div *ngFor="let img of dataHelper?.productDetail?.imageUrls;let i = index" class="carousel-item"
+                        [class.active]="i===0">
+                        <img [src]="img" class="prodImage">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h6 class="text-primary mt-3">{{dataHelper.productDetail.category || 'TEST CATEGORY' | uppercase}}</h6>
+            <h3 class="fw-bold">{{dataHelper.productDetail.title | titlecase}}</h3>
+            <p>{{dataHelper.productDetail.description}}</p>
+            <h5 class="text-primary fw-bold">{{dataHelper.productDetail.price | currency:'USD'}}</h5>
+            <button class="btn btn-success" (click)="addProductToCart(dataHelper.productDetail)"> <i
+                    class="bi bi-cart-plus"></i> Add to
+                Cart</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

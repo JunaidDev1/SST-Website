@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { iUser } from '../shared/user';
 import { ApiService } from './api.service';
 import { DataHelperService } from '../data-helper.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class UserAuthService {
     public apiService: ApiService,
     private firebaseDb: AngularFireDatabase,
     private firebaseAuth: AngularFireAuth,
-    public dataHelper: DataHelperService
+    public dataHelper: DataHelperService,
+    private toastr: ToastrService
   ) {
     if (localStorage.getItem('uid')) {
       const user = localStorage.getItem('userData');
@@ -68,7 +70,7 @@ export class UserAuthService {
       this.dataHelper.displayLoading = false;
       localStorage.clear();
       this.currentUser = new iUser();
-      this.router.navigate(['/login']);
+      location.reload();
     });
   }
 
@@ -79,7 +81,7 @@ export class UserAuthService {
       return user;
     } catch (e: any) {
       this.dataHelper.displayLoading = false;
-      alert('Invalid login credentials!');
+      this.toastr.error('Invalid login credentials!');
     }
   }
 

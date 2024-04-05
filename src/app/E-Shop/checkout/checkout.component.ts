@@ -6,6 +6,7 @@ import { iClientOrder } from 'src/app/shared/order';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { UserAuthService } from 'src/app/shared/user-auth.service';
 import { DataHelperService } from 'src/app/data-helper.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
     public apiService: ApiService,
     public firebaseDb: AngularFireDatabase,
     public dataHelper: DataHelperService,
-    public userAuth: UserAuthService
+    public userAuth: UserAuthService,
+    public toastr: ToastrService
   ) {
     this.cartItems = apiService.getCartItems();
     if (!this.cartItems.length || !localStorage.getItem('uid')) {
@@ -84,20 +86,12 @@ export class CheckoutComponent implements OnInit {
         this.saveDataIntoFirebase(data);
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
-        this.alertMsg = 'Payment cancelled';
-        this.showErrorAlert = true;
-        setTimeout(() => {
-          this.showErrorAlert = false;
-        }, 3000);
+        console.log('OnCancel', data, actions); 
+        this.toastr.error('Payment cancelled');  
       },
       onError: err => {
-        console.log('OnError', err);
-        this.alertMsg = 'Payment error';
-        this.showErrorAlert = true;
-        setTimeout(() => {
-          this.showErrorAlert = false;
-        }, 3000);
+        console.log('OnError', err); 
+        this.toastr.error('Payment error'); 
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
@@ -109,19 +103,20 @@ export class CheckoutComponent implements OnInit {
     this.dataHelper.displayLoading = true;
     const clientOrder: iClientOrder = {
       paymentId: paymentData.id,
-      orderId: this.firebaseDb.database.ref().child('services').push().key,
+      orderId: this.firebaseDb.database.ref().child('orders').push().key,
       clientId: this.userAuth.currentUser.uid,
+      status: 'Pending',
       createdOn: Number(new Date()),
       total: this.apiService.taxesFee + this.apiService.getSubTotal(),
       productIds: [], //TODO: Map this array from cart items
     }
     this.orderId = clientOrder.orderId;
     const urlPath = `orders/${clientOrder.orderId}`;
-    this.apiService.updateDataOnFirebase(urlPath, clientOrder)
+    this.dataHelper.updateDataOnFirebase(urlPath, clientOrder)
       .then(() => {
         this.apiService.clearCart();
         this.showSuccessPopup = true;
-        alert('Payment Success, order saved!');
+        this.toastr.success('Payment Success, order saved!');
         this.dataHelper.displayLoading = false;
       });
   }

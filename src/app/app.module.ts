@@ -29,9 +29,17 @@ import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { LoginComponent } from './credentials/login/login.component';
 import { SignupComponent } from './credentials/signup/signup.component';
+import { ToastrModule } from 'ngx-toastr';
 import { ResetPasswordComponent } from './credentials/reset-password/reset-password.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
+import { AddProductComponent } from './sharedComponents/add-product/add-product.component';
+import { MyOrdersComponent } from './E-Shop/my-orders/my-orders.component';
+import { DeleteModalComponent } from './sharedComponents/delete-modal/delete-modal.component';
+import { ChangePasswordComponent } from './credentials/change-password/change-password.component';
+import { MyProductsComponent } from './E-Shop/my-products/my-products.component';
+import { ProductDetailComponent } from './E-Shop/product-detail/product-detail.component';
+import { OrderDetailComponent } from './E-Shop/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +60,14 @@ import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
     CheckoutOldComponent,
     LoginComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AddProductComponent,
+    MyOrdersComponent,
+    DeleteModalComponent,
+    ChangePasswordComponent,
+    MyProductsComponent,
+    ProductDetailComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +80,15 @@ import { ngxLoadingAnimationTypes, NgxLoadingModule } from 'ngx-loading';
     NgbModule,
     NgxPayPalModule,
     HttpClientModule,
+    ToastrModule.forRoot(
+      {
+        positionClass: 'toast-top-right',
+        closeButton: true,
+        progressBar: true,
+        timeOut: 4000,
+        preventDuplicates: true,
+      }
+    ),
     NgxUiLoaderModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),

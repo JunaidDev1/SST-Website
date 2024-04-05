@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DataHelperService } from 'src/app/data-helper.service';
 import { ApiService } from 'src/app/shared/api.service';
 import { iUser } from 'src/app/shared/user';
@@ -26,6 +27,7 @@ export class SignupComponent {
     public apiService: ApiService,
     public userAuth: UserAuthService,
     public firebaseAuth: AngularFireAuth,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +54,7 @@ export class SignupComponent {
   createAccount(data: any) {
     const self = this;
     if (data.password !== data.cPassword) {
-      return alert('Password mismatch!');
+      this.toastr.error('Password mismatch!');
     }
 
     self.dataHelper.displayLoading = true;
@@ -64,13 +66,13 @@ export class SignupComponent {
             data.uid = (await currentUser).uid;
             self.saveDatatoUserTableAfterRegister(data);
           } else {
-            alert('User not authenticated!');
+            this.toastr.error('User not authenticated!');
           }
         }
       })
       .catch((error) => {
         self.dataHelper.displayLoading = false;
-        alert('Error, there is an issue with account creation!');
+        this.toastr.error('Error, there is an issue with account creation!');
       });
   }
 
@@ -80,12 +82,12 @@ export class SignupComponent {
     data.cPassword = null;
     data.createdOn = Number(new Date());
     const urlPath = `users/${data.uid}`;
-    self.apiService.updateDataOnFirebase(urlPath, data)
+    self.dataHelper.updateDataOnFirebase(urlPath, data)
       .then(() => {
         self.userAuth.setUser(data);
         self.dataHelper.displayLoading = false;
         self.router.navigate(['/e-shop']);
-        alert('Account authenticated successfully!');
+        this.toastr.success('Account authenticated successfully!');
       });
   }
 

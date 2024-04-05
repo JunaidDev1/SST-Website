@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Delete Confirmtion</h4>
+    <button type="button" class="btn-close" (click)="activeModal.close()" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+    <p>Are you sure you want to delete this {{deletionItem}}?</p>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-dark rounded-30" (click)="activeModal.close()">Cancel</button>
+    <button (click)="deleteConfirmed()" class="btn btn-sm btn-danger rounded-30 text-white">Delete</button>
+</div>

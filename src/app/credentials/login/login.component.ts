@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { iUser } from 'src/app/shared/user';
 import { ApiService } from 'src/app/shared/api.service';
 import { UserAuthService } from 'src/app/shared/user-auth.service';
 import { DataHelperService } from 'src/app/data-helper.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent {
     private router: Router,
     public apiService: ApiService,
     public userAuth: UserAuthService,
-    public dataHelper: DataHelperService
+    public dataHelper: DataHelperService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -53,16 +56,17 @@ export class LoginComponent {
 
   getUserData(uid: string) {
     const urlPath = `users/${uid}`;
-    this.apiService.getFirebaseData(urlPath)
+    this.dataHelper.getFirebaseData(urlPath)
       .then((snapshot: any) => {
         const user = snapshot.val();
         if (user) {
           if (!user.isDeleted) {
             this.userAuth.setUser(user);
-            alert('Logged In');
+            this.toastr.success('Logged In');
             this.router.navigate(['/e-shop']);
+            this.dataHelper.displayLoading = false;
           } else {
-            alert('User not authenticated or blocked by admin!');
+            this.toastr.error('User not authenticated or blocked by admin!');
             this.dataHelper.displayLoading = false;
           }
         } else {

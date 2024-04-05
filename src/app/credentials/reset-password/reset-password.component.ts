@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataHelperService } from 'src/app/data-helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset-password',
@@ -15,7 +16,8 @@ export class ResetPasswordComponent {
   constructor(
     public dataHelper: DataHelperService,
     public firebaseAuth: AngularFireAuth,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -26,19 +28,19 @@ export class ResetPasswordComponent {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const showError = !re.test(String(self.email).toLowerCase());
     if (showError) {
-      alert('Invalid email pattern!');
+      this.toastr.error('Invalid email pattern!');
       return;
     }
     self.dataHelper.displayLoading = true;
     self.firebaseAuth.sendPasswordResetEmail(self.email)
       .then(() => {
         self.dataHelper.displayLoading = false;
-        alert('Click the link sent in the email and follow the instructions!');
+        this.toastr.success('Click the link sent in the email and follow the instructions!');
         self.router.navigate(['/login']);
       })
       .catch((e) => {
         self.dataHelper.displayLoading = false;
-        alert('This email address is not registered!');
+        this.toastr.error('This email address is not registered!');
       });
   }
 

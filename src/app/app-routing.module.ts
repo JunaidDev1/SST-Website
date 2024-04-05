@@ -12,18 +12,28 @@ import { CheckoutOldComponent } from './checkout-old/checkout-old.component';
 import { LoginComponent } from './credentials/login/login.component';
 import { SignupComponent } from './credentials/signup/signup.component';
 import { ResetPasswordComponent } from './credentials/reset-password/reset-password.component';
+import { MyOrdersComponent } from './E-Shop/my-orders/my-orders.component';
+import { ChangePasswordComponent } from './credentials/change-password/change-password.component';
+import { MyProductsComponent } from './E-Shop/my-products/my-products.component';
+import { ProductDetailComponent } from './E-Shop/product-detail/product-detail.component';
+import { OrderDetailComponent } from './E-Shop/order-detail/order-detail.component';
 
 const routes: Routes = [
   // { path: 'home', component: HomeComponent },
   { path: 'e-shop', component: EShopComponent },
+  { path: 'my-products', component: MyProductsComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'our-team', component: OurTeamComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'product-detail', component: ProductDetailComponent },
+  { path: 'order-detail', component: OrderDetailComponent },
   { path: 'checkout-old', component: CheckoutOldComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'my-orders', component: MyOrdersComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: '**', redirectTo: '/e-shop', pathMatch: 'full' },

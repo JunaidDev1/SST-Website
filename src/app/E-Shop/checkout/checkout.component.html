@@ -2,13 +2,6 @@
 <div class="headerBg"></div>
 
 <div *ngIf="!showSuccessPopup" class="row px-5 main-container">
-
-    <div *ngIf="showErrorAlert" class="alert alert-danger alert-dismissible fade show">
-        <button (click)="apiService.showSuccessAlert = false" type="button" class="btn-close"
-            data-bs-dismiss="alert"></button>
-        <strong>Error!</strong> {{alertMsg}}
-    </div>
-
     <div class="col-lg-6 px-5 left-column mt-4">
         <ngx-paypal [config]="payPalConfig"></ngx-paypal>
     </div>
@@ -21,7 +14,7 @@
             <div class="col-lg-2">
                 <div>
                     <p class="totalBadge"><span class="badge">{{item.quantity}}</span></p>
-                    <img class="productImg" [src]="item.picture">
+                    <img class="productImg" [src]="item.imageUrls[0]">
                 </div>
             </div>
             <div class="col-lg-7">
@@ -112,3 +105,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { productData } from './products.model';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataHelperService } from '../data-helper.service';
 import { Router } from '@angular/router';
+import { iProduct } from './product';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
 
   private apiUrl = 'https://api.paypal.com'; // For sandbox environment, change to live for production
@@ -18,50 +18,21 @@ export class ApiService {
 
   private productId = new BehaviorSubject<string>('');
   productId$ = this.productId.asObservable();
+  dataFetching: any = {};
   cartItems: any[] = [];
+  displayLoading: boolean;
   taxesFee = 2.98;
+  dataObservable = new Subject<any>();
+  allProducts: iProduct[] = [];
   showSuccessAlert = false;
 
   constructor(
-    private firebaseDb: AngularFireDatabase,
-    private ngxService: NgxUiLoaderService,
     public dataHelper: DataHelperService,
     private http: HttpClient,
-    public router: Router
+    public router: Router,
+    private toastr: ToastrService
   ) { }
 
-  getProducts(): Observable<any[]> {
-    return this.firebaseDb.list('Product').valueChanges();
-  }
-  addProduct(productObject: productData) {
-    // debugger
-    const customId = this.generateCustomId(productObject.price);
-    productObject.id = customId;
-    this.firebaseDb.object('Product/' + customId).set(productObject);
-    // Notify about the new product
-    this.firebaseDb.list('Product-Notifications').push({ type: 'newProduct', productId: customId });
-  }
-  deleteProduct(productIndexId: any) {
-    this.firebaseDb.object('Product/' + productIndexId).remove();
-  }
-  updateProduct(productObject: any, id: any) {
-    this.firebaseDb.object('Product/' + id).update(productObject);
-  }
-  getProductById(productId: string): Observable<any> {
-    return this.firebaseDb.object('Product/' + productId).valueChanges();
-  }
-  setProductId(id: any) {
-    this.productId.next(id);
-  }
-  getNewProductAdded(): Observable<any> {
-    return this.firebaseDb.list('Product-Notifications').valueChanges();
-  }
-  ngxServiceLoader() {
-    this.ngxService.start();
-    setTimeout(() => {
-      this.ngxService.stop();
-    }, 2000);
-  }
   generateCustomId(prefix: string = 'custom'): string {
     const timestamp = new Date().getTime().toString(16);
     const random = Math.floor(Math.random() * 1000000).toString(16);
@@ -69,36 +40,14 @@ export class ApiService {
     return uniqueId;
   }
 
-  async getFirebaseData(urlPath: string): Promise<any> {
-    try {
-      return this.firebaseDb.database.ref().child(urlPath)
-        .once('value', (snapshot) => {
-          return snapshot;
-        });
-    } catch (err) {
-      this.dataHelper.displayLoading = false;
-      alert('Error try again!');
-    }
-  }
-
-  async updateDataOnFirebase(urlPath: string, data: any): Promise<any> {
-    try {
-      const resp = await this.firebaseDb.database.ref().child(urlPath).set(data);
-      return resp;
-    } catch (e) {
-      this.dataHelper.displayLoading = false;
-      alert('Error try again!');
-    }
-  }
-
-  addToCart(product: productData) {
+  addProductToCart(product: iProduct) {
     if (!localStorage.getItem('uid')) {
-      alert('Please login or create a new account!');
+      this.toastr.warning('Please login or create a new account!');
       this.router.navigate(['/login']);
       return;
     }
 
-    const existingItem = this.getCartItems().find(item => item.id === product.id);
+    const existingItem = this.getCartItems().find(item => item.id === product.productId);
     if (existingItem) {
       existingItem.quantity++;
     } else {
@@ -106,10 +55,7 @@ export class ApiService {
       this.cartItems.push(newItem);
     }
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-    this.showSuccessAlert = true;
-    setTimeout(() => {
-      this.showSuccessAlert = false;
-    }, 3000);
+    this.toastr.success(' Success! Product has been added to your shopping cart.')
   }
 
   getCartItems() {

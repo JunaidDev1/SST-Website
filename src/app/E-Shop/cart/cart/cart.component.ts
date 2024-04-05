@@ -25,7 +25,7 @@ export class CartComponent implements OnInit {
     this.cartItems = this.apiService.getCartItems();
   }
   addToCart(item: any): void {
-    this.apiService.addToCart(item);
+    this.apiService.addProductToCart(item);
     this.cartItems = this.apiService.getCartItems();
   }
   proceedToCheckout(): void {
