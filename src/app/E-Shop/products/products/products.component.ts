@@ -11,6 +11,8 @@ import { iProduct } from 'src/app/shared/product';
 export class ProductsComponent implements OnInit {
 
   allProducts: iProduct[] = [];
+  featuredProducts: iProduct[] = [];
+  mostPopulatProducts: iProduct[] = [];
 
   constructor(
     public apiService: ApiService,
@@ -21,6 +23,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     if (this.dataHelper.dataFetching.allProductFetched) {
       this.allProducts = this.dataHelper.allProducts.sort((a, b) => b.createdOn - a.createdOn);
+      this.featuredProducts = this.allProducts.filter((x, index) => (index % 2 === 0));
+      this.mostPopulatProducts = this.allProducts.filter((x, index) => (index % 2 !== 0));
     } else {
       this.getAllProducts();
     }
@@ -30,21 +34,10 @@ export class ProductsComponent implements OnInit {
     this.dataHelper.getDataObservable().subscribe((data: any) => {
       if (data.allProductFetched) {
         this.allProducts = this.dataHelper.allProducts.sort((a, b) => b.createdOn - a.createdOn);
+        this.featuredProducts = this.allProducts.filter((x, index) => (index % 2 === 0));
+        this.mostPopulatProducts = this.allProducts.filter((x, index) => (index % 2 !== 0));
       }
     });
-  }
-
-  addToCart(product: iProduct) {
-    this.apiService.addProductToCart(product);
-  }
-
-  productDetail(product: iProduct) {
-    this.dataHelper.productDetail = product;
-    this.router.navigate(['/product-detail'])
-  }
-
-  addProductToCart(product: iProduct) {
-    this.apiService.addProductToCart(product);
   }
 
 }

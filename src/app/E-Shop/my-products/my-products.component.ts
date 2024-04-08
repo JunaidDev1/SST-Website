@@ -7,7 +7,6 @@ import { HttpHelperService } from 'src/app/shared/http-helper.service';
 import { iProduct } from 'src/app/shared/product';
 import { UserAuthService } from 'src/app/shared/user-auth.service';
 import { AddProductComponent } from 'src/app/sharedComponents/add-product/add-product.component';
-import { DeleteModalComponent } from 'src/app/sharedComponents/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-my-products',
@@ -48,24 +47,6 @@ export class MyProductsComponent implements OnInit {
     });
   }
 
-  openDeleteConfirmationModal(productId: string) {
-    this.httpHelper.openDeleteConfirmationModal(DeleteModalComponent, 'product')
-      .then((result: string) => {
-        if (result && result === 'Deleted') {
-          this.toastr.success('Product deleted sucessfully!');
-          this.removeServiceOnFirebase(productId);
-        }
-      });
-  }
-
-  removeServiceOnFirebase(productId: string) {
-    const urlPath = `products/${productId}`;
-    this.dataHelper.removeFirebaseData(urlPath)
-      .then(() => {
-        location.reload();
-      });
-  }
-
   addProduct(product = new iProduct()) {
     this.httpHelper.openSharedModal(AddProductComponent, 'product', product, 'lg')
       .then((result: any) => {
@@ -84,19 +65,6 @@ export class MyProductsComponent implements OnInit {
         location.reload();
         this.toastr.success('Product saved successfully!');
       });
-  }
-
-  addToCart(product: iProduct) {
-    this.apiService.addProductToCart(product);
-  }
-
-  productDetail(product: iProduct) {
-    this.dataHelper.productDetail = product;
-    this.router.navigate(['/product-detail'])
-  }
-
-  addProductToCart(product: iProduct) {
-    this.apiService.addProductToCart(product);
   }
 
 }

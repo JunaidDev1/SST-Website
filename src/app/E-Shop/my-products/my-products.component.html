@@ -16,68 +16,7 @@
       </div>
    </div>
 
-   <div *ngIf="allProducts.length" class="row mb-5">
-      <div class="col-lg-3" *ngFor="let product of allProducts">
-         <div class="card shadow">
-            <div class="card-body p-0">
-               <!-- Product Images -->
-               <div id="carouselExample" class="carousel slide">
-                  <div class="carousel-inner">
-                     <div (click)="productDetail(product)" *ngFor="let img of product.imageUrls;let i = index"
-                        class="carousel-item" [class.active]="i===0">
-                        <img [src]="img" class="prodImage">
-                     </div>
-                  </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                     data-bs-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                     data-bs-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Next</span>
-                  </button>
-               </div>
-
-               <div class="p-2" (click)="productDetail(product)">
-                  <h5 class="card-title description mt-3" style="font-weight: bold;">{{product.title||'Test product'}}
-                  </h5>
-                  <p class="card-text mt-0 mb-1">{{product.category | titlecase}}</p>
-                  <p class="card-text mt-0" style="font-weight: bold !important;">{{product.price | currency :
-                     'USD'}}</p>
-               </div>
-               <div class="card-footer p-0" style="padding-top: 10px !important;padding-bottom: 10px !important;">
-                  <div class="row">
-                     <div class="col-md-7">
-                        <div class="text-start">
-                           <button class="btn btn-primary btn-block" style="font-size: 14px !important;"
-                              (click)="addProductToCart(product)">
-                              <i class="bi bi-cart-plus"></i> Add to Cart
-                           </button>
-                        </div>
-                     </div>
-                     <div class="col-md-2">
-                        <div>
-                           <button class="btn btn-success btn-block" (click)="addProduct(product)">
-                              <i class="bi bi-pencil-square"></i>
-                           </button>
-                        </div>
-                     </div>
-                     <div class="col-md-3">
-                        <button class="btn ms-1 btn-danger btn-block"
-                           (click)="openDeleteConfirmationModal(product.productId)">
-                           <i class="bi bi-trash"></i>
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div *ngIf="!allProducts.length" class="mb-5">
-      <p class="text-center">No product found!</p>
-   </div>
+   <app-product *ngIf="allProducts.length" [allProducts]="allProducts"></app-product>
 </div>
+
 <app-footer></app-footer>

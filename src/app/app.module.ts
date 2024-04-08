@@ -40,6 +40,7 @@ import { ChangePasswordComponent } from './credentials/change-password/change-pa
 import { MyProductsComponent } from './E-Shop/my-products/my-products.component';
 import { ProductDetailComponent } from './E-Shop/product-detail/product-detail.component';
 import { OrderDetailComponent } from './E-Shop/order-detail/order-detail.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { OrderDetailComponent } from './E-Shop/order-detail/order-detail.compone
     ChangePasswordComponent,
     MyProductsComponent,
     ProductDetailComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
