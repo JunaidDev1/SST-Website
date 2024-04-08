@@ -37,6 +37,7 @@
         </div>
 
         <select [(ngModel)]="product.category" class="form-select  mt-3">
+            <option value="homeDecor">Home</option>
             <option value="clothing">Clothing</option>
             <option value="grocery">Grocery</option>
             <option value="boots">Boots</option>
@@ -47,7 +48,7 @@
         </div>
 
         <div class="input-group shadow-sm mt-3">
-            <textarea [(ngModel)]="product.description" type="text" class="form-control"
+            <textarea rows="10" [(ngModel)]="product.description" type="text" class="form-control"
                 placeholder="Product Description Here..."></textarea>
         </div>
 

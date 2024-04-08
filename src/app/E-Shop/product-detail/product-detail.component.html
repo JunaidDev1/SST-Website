@@ -26,10 +26,10 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <h6 class="text-primary mt-3">{{dataHelper.productDetail.category || 'TEST CATEGORY' | uppercase}}</h6>
-            <h3 class="fw-bold">{{dataHelper.productDetail.title | titlecase}}</h3>
-            <p>{{dataHelper.productDetail.description}}</p>
-            <h5 class="text-primary fw-bold">{{dataHelper.productDetail.price | currency:'USD'}}</h5>
+            <h6 class="text-primary mt-3">{{dataHelper.productDetail?.category || 'TEST CATEGORY' | uppercase}}</h6>
+            <h3 class="fw-bold">{{dataHelper.productDetail?.title | titlecase}}</h3>
+            <p>{{dataHelper.productDetail?.description}}</p>
+            <h5 class="text-primary fw-bold">{{dataHelper.productDetail?.price | currency:'USD'}}</h5>
             <button class="btn btn-success" (click)="addProductToCart(dataHelper.productDetail)"> <i
                     class="bi bi-cart-plus"></i> Add to
                 Cart</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataHelperService } from 'src/app/data-helper.service';
 import { ApiService } from 'src/app/shared/api.service';
 import { iProduct } from 'src/app/shared/product';
@@ -10,9 +11,16 @@ import { iProduct } from 'src/app/shared/product';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(public dataHelper: DataHelperService, public apiService: ApiService) { }
+  constructor(
+    public dataHelper: DataHelperService,
+    public apiService: ApiService,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
+    if (!this.dataHelper?.productDetail) {
+      this.router.navigate(['/e-shop']);
+    }
   }
 
   addProductToCart(product: iProduct) {
