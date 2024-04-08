@@ -44,32 +44,41 @@ export class LoginComponent {
     this.router.navigate(['/signup']);
   }
 
+  adminLogin() {
+    this.dataHelper.displayLoading = true;
+    const email = this.onLoginForm.value['email'];
+    const password = this.onLoginForm.value['password'];
+    this.userAuth.loginUser({ email, password })
+      .then((data) => {
+        if (data) {
+          const urlPath = `admins/${data.user.uid}`;
+          this.getUserData(urlPath);
+        }
+      });
+  }
+
   loginAccount(formData: any) {
     this.dataHelper.displayLoading = true;
     this.userAuth.loginUser(formData)
       .then((data) => {
         if (data) {
-          this.getUserData(data.user.uid);
+          const urlPath = `users/${data.user.uid}`;
+          this.getUserData(urlPath);
         }
       });
   }
 
-  getUserData(uid: string) {
-    const urlPath = `users/${uid}`;
+  getUserData(urlPath: string) {
     this.dataHelper.getFirebaseData(urlPath)
       .then((snapshot: any) => {
-        const user = snapshot.val();
+        const user: iUser = snapshot.val() ?? new iUser();
         if (user) {
-          if (!user.isDeleted) {
-            this.userAuth.setUser(user);
-            this.toastr.success('Logged In');
-            this.router.navigate(['/e-shop']);
-            this.dataHelper.displayLoading = false;
-          } else {
-            this.toastr.error('User not authenticated or blocked by admin!');
-            this.dataHelper.displayLoading = false;
-          }
+          this.userAuth.setUser(user);
+          this.toastr.success('Logged In');
+          this.router.navigate(['/e-shop']);
+          this.dataHelper.displayLoading = false;
         } else {
+          this.toastr.error('User not authenticated or blocked by admin!');
           this.userAuth.logoutUser();
         }
       });

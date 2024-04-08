@@ -26,6 +26,9 @@ export class MyProductsComponent implements OnInit {
     public router: Router,
     public userAuth: UserAuthService
   ) {
+    if (!userAuth.currentUser.isSuperAdmin) {
+      router.navigate(['/e-shop']);
+    }
   }
 
   ngOnInit(): void {

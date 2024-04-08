@@ -42,19 +42,21 @@
                         <span routerLink="/signup">Signup</span>
                     </a>
                     <ul class="dropdown-menu dropdownPopup me-4">
-                        <li><a class="dropdown-item" routerLink="/my-products">My Products</a></li>
+                        <li *ngIf="userAuth.currentUser?.isSuperAdmin">
+                            <a class="dropdown-item" routerLink="/my-products">My Products</a>
+                        </li>
                         <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
                         <li><a class="dropdown-item" routerLink="/change-password">Change Password</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-
                         <li><a class="dropdown-item">
-                                <button *ngIf="userAuth.currentUser?.uid" class="btn w-100 btn-danger">
+                                <button (click)="userAuth.logoutUser()" class="btn w-100 btn-danger">
                                     <i class="fa fa-box-arrow-in-left"></i>
-                                    <span (click)="userAuth.logoutUser()">Logout</span>
+                                    <span>Logout</span>
                                 </button>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

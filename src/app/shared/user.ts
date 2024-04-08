@@ -6,6 +6,5 @@ export class iUser {
     profileUrl: string;
     uid: string;
     createdOn: number;
-    country: string;
-    dob: string | Date;
+    isSuperAdmin: boolean;
 }

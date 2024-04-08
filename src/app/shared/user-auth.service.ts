@@ -32,7 +32,8 @@ export class UserAuthService {
 
   getCurrentUser() {
     const uid = localStorage.getItem('uid');
-    this.firebaseDb.database.ref().child(`/users/${uid}`)
+    const path = this.currentUser.isSuperAdmin ? `/admins/${uid}` : `/users/${uid}`;
+    this.firebaseDb.database.ref().child(path)
       .on('value', (snapshot) => {
         this.currentUser = snapshot?.val() ?? {};
         if (this.currentUser.uid) {
@@ -49,7 +50,6 @@ export class UserAuthService {
     localStorage.setItem('userLoggedIn', 'true');
     localStorage.setItem('userData', JSON.stringify(user));
     this.currentUser = user;
-    // this.dataHelper.fetchAllData();
   }
 
   loginUsers(email: string, password: string): Promise<any> {
