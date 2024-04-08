@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/api.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
-import { iClientOrder } from 'src/app/shared/order';
+import { iClientOrder, iOrderProduct, IShippingInfo } from 'src/app/shared/order';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { UserAuthService } from 'src/app/shared/user-auth.service';
 import { DataHelperService } from 'src/app/data-helper.service';
@@ -41,6 +41,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   private initConfig(): void {
+    const subTotal = this.apiService.taxesFee + this.apiService.getSubTotal();
+    const grandTotal = subTotal.toFixed(2);
     this.payPalConfig = {
       currency: 'USD',
       clientId: 'AXR7BvEPLkQIkGk4-U-nF3u_s-fvAfROGZQJpJ5lcGvyingP2MUeilnpacsicSlwvgJWUEY9WqJinF5s',
@@ -49,23 +51,14 @@ export class CheckoutComponent implements OnInit {
         purchase_units: [{
           amount: {
             currency_code: 'USD',
-            value: '1',
+            value: grandTotal,
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: '1'
+                value: grandTotal
               }
             }
           },
-          items: [{
-            name: 'Enterprise Subscription',
-            quantity: '1',
-            category: 'DIGITAL_GOODS',
-            unit_amount: {
-              currency_code: 'USD',
-              value: '1',
-            },
-          }]
         }]
       },
       advanced: {
@@ -86,12 +79,12 @@ export class CheckoutComponent implements OnInit {
         this.saveDataIntoFirebase(data);
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions); 
-        this.toastr.error('Payment cancelled');  
+        console.log('OnCancel', data, actions);
+        this.toastr.error('Payment cancelled');
       },
       onError: err => {
-        console.log('OnError', err); 
-        this.toastr.error('Payment error'); 
+        console.log('OnError', err);
+        this.toastr.error('Payment error');
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
@@ -101,16 +94,32 @@ export class CheckoutComponent implements OnInit {
 
   saveDataIntoFirebase(paymentData: any) {
     this.dataHelper.displayLoading = true;
+    this.orderId = paymentData.id;
+    const shippingInfo = new IShippingInfo();
+    shippingInfo.firstName = paymentData.payer?.name?.given_name ?? '';
+    shippingInfo.lastName = paymentData.payer?.name?.surname ?? '';
+    shippingInfo.email = paymentData.payer?.email_address ?? '';
+    shippingInfo.phone = paymentData.payer?.phone_number ?? '';
+    shippingInfo.payerId = paymentData.payer?.payer_id ?? '';
+    shippingInfo.streetAddress = paymentData.purchase_units[0].shipping?.address?.address_line_1 ?? '';
+    shippingInfo.state = paymentData.purchase_units[0].shipping?.address?.admin_area_1 ?? '';
+    shippingInfo.city = paymentData.purchase_units[0].shipping?.address?.admin_area_2 ?? '';
+    shippingInfo.country = paymentData.purchase_units[0].shipping?.address?.county_code ?? '';
+    shippingInfo.zipCode = paymentData.purchase_units[0].shipping?.address?.postal_code ?? '';
+
     const clientOrder: iClientOrder = {
       paymentId: paymentData.id,
       orderId: this.firebaseDb.database.ref().child('orders').push().key,
       clientId: this.userAuth.currentUser.uid,
       status: 'Pending',
       createdOn: Number(new Date()),
-      total: this.apiService.taxesFee + this.apiService.getSubTotal(),
-      productIds: [], //TODO: Map this array from cart items
+      subTotal: this.apiService.getSubTotal(),
+      taxFee: this.apiService.taxesFee,
+      grandTotal: this.apiService.taxesFee + this.apiService.getSubTotal(),
+      shippingInfo: shippingInfo,
+      productIds: this.getSelectedProducts(),
     }
-    this.orderId = clientOrder.orderId;
+
     const urlPath = `orders/${clientOrder.orderId}`;
     this.dataHelper.updateDataOnFirebase(urlPath, clientOrder)
       .then(() => {
@@ -119,6 +128,14 @@ export class CheckoutComponent implements OnInit {
         this.toastr.success('Payment Success, order saved!');
         this.dataHelper.displayLoading = false;
       });
+  }
+
+  getSelectedProducts(): iOrderProduct[] {
+    const orderProducts = this.cartItems
+      .map((x) => {
+        return { productId: x.productId, productPrice: x.price, quantity: x.quantity }
+      });
+    return orderProducts;
   }
 
 }

@@ -4,11 +4,28 @@ export class iClientOrder {
     createdOn: number;
     status: string;
     paymentId: string;
-    total: number;
+    subTotal: number;
+    grandTotal: number;
+    taxFee: number;
     productIds: iOrderProduct[] = [];
+    shippingInfo: IShippingInfo = new IShippingInfo();
 }
 
 export class iOrderProduct {
     productId: string;
     productPrice: number;
+    quantity: number;
+}
+
+export class IShippingInfo {
+    firstName: string;
+    lastName: string;
+    email: string;
+    streetAddress: string;
+    zipCode: string;
+    state: string;
+    city: string;
+    country: string;
+    payerId: string;
+    phone: string;
 }

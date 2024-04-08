@@ -47,7 +47,7 @@ export class ApiService {
       return;
     }
 
-    const existingItem = this.getCartItems().find(item => item.id === product.productId);
+    const existingItem = this.getCartItems().find(item => item.productId === product.productId);
     if (existingItem) {
       existingItem.quantity++;
     } else {
@@ -85,7 +85,7 @@ export class ApiService {
   }
 
   removeFromCart(item: any): void {
-    const index = this.getCartItems().findIndex(cartItem => cartItem.id === item.id);
+    const index = this.getCartItems().findIndex(cartItem => cartItem.productId === item.productId);
     if (index !== -1) {
       this.cartItems.splice(index, 1);
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
@@ -93,7 +93,7 @@ export class ApiService {
   }
 
   removeOneFromCart(item: any): void {
-    const index = this.getCartItems().findIndex(cartItem => cartItem.id === item.id);
+    const index = this.getCartItems().findIndex(cartItem => cartItem.productId === item.productId);
     if (index !== -1) {
       if (this.cartItems[index].quantity > 1) {
         this.cartItems[index].quantity--;

@@ -18,8 +18,7 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <div class="description">{{item.name}}</div>
-                <div class="description">{{item.description}}</div>
+                <div class="description bold">{{item.title}}</div>
             </div>
             <div class="col-lg-2">
                 <div class="price text-end">{{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}</div>

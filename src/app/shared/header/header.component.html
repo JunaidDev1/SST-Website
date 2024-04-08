@@ -74,7 +74,7 @@
                                         <p class="description my-1">{{item.name}}</p>
                                         <p class="price">
                                             <span class="text-secondary">{{item.quantity}}</span> X
-                                            {{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}
+                                            {{ item.price | currency: 'USD' }}
                                             <span (click)="removeItem(item)"
                                                 class="float-end pointer text-danger">X</span>
                                         </p>
