@@ -37,7 +37,12 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.calculateTaxFee();
     this.initConfig();
+  }
+
+  calculateTaxFee() {
+    this.apiService.taxesFee = (this.apiService.getSubTotal() * 12) / 100;
   }
 
   private initConfig(): void {
@@ -99,12 +104,11 @@ export class CheckoutComponent implements OnInit {
     shippingInfo.firstName = paymentData.payer?.name?.given_name ?? '';
     shippingInfo.lastName = paymentData.payer?.name?.surname ?? '';
     shippingInfo.email = paymentData.payer?.email_address ?? '';
-    shippingInfo.phone = paymentData.payer?.phone_number ?? '';
     shippingInfo.payerId = paymentData.payer?.payer_id ?? '';
     shippingInfo.streetAddress = paymentData.purchase_units[0].shipping?.address?.address_line_1 ?? '';
     shippingInfo.state = paymentData.purchase_units[0].shipping?.address?.admin_area_1 ?? '';
     shippingInfo.city = paymentData.purchase_units[0].shipping?.address?.admin_area_2 ?? '';
-    shippingInfo.country = paymentData.purchase_units[0].shipping?.address?.county_code ?? '';
+    shippingInfo.country = paymentData.purchase_units[0].shipping?.address?.country_code ?? '';
     shippingInfo.zipCode = paymentData.purchase_units[0].shipping?.address?.postal_code ?? '';
 
     const clientOrder: iClientOrder = {

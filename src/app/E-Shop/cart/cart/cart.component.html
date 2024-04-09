@@ -20,10 +20,9 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ item.title | titlecase }} <span
-                                                class="badge bg-secondary">{{
-                                                item.quantity }}</span></h5>
-                                        <p class="card-text">{{ item.description }}</p>
+                                        <h5 class="card-title">{{ item.title | titlecase }}
+                                            <span class="badge bg-secondary">{{item.quantity }}</span>
+                                        </h5>
                                         <p class="card-text">
                                             {{ item.price | currency: 'USD' }} X {{ item.quantity }} =
                                             {{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}

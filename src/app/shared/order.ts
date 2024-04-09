@@ -27,5 +27,4 @@ export class IShippingInfo {
     city: string;
     country: string;
     payerId: string;
-    phone: string;
 }

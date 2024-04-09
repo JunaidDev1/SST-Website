@@ -21,7 +21,7 @@ export class ApiService {
   dataFetching: any = {};
   cartItems: any[] = [];
   displayLoading: boolean;
-  taxesFee = 2.98;
+  taxesFee = 0;
   dataObservable = new Subject<any>();
   allProducts: iProduct[] = [];
   showSuccessAlert = false;

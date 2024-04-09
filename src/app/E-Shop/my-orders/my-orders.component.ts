@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataHelperService } from 'src/app/data-helper.service';
-import { iClientOrder, iOrderProduct } from 'src/app/shared/order';
+import { iClientOrder } from 'src/app/shared/order';
 import { UserAuthService } from 'src/app/shared/user-auth.service';
 
 @Component({
@@ -16,52 +16,51 @@ export class MyOrdersComponent implements OnInit {
   itemPerPage: number = 10;
   totalItems: any;
   activeTab: string = 'new';
-  allOrders: any[] = [
-    {
-      orderId: 'order_id_1',
-      createdOn: 1634523600000,
-      status: 'Pending',
-      total: 47.27,
-    },
-    {
-      orderId: 'order_id_2',
-      createdOn: 1634523600000,
-      status: 'Approved',
-      total: 47.27,
-    },
-    {
-      orderId: 'order_id_3',
-      createdOn: 1634523600000,
-      status: 'Completed',
-      total: 47.27,
-    },
-    {
-      orderId: 'order_id_4',
-      createdOn: 1634523600000,
-      status: 'Approved',
-      total: 47.27,
-    }
-  ]
+  allOrders: iClientOrder[] = [];
 
-
-  constructor(public userAuth: UserAuthService, public dataHelper: DataHelperService, public router: Router) { }
+  constructor(
+    public userAuth: UserAuthService,
+    public dataHelper: DataHelperService,
+    public router: Router) { }
 
   ngOnInit(): void {
+    if (this.dataHelper.dataFetching.allOrdersFetched) {
+      this.filterMyOrders();
+    } else {
+      this.getAllOrders();
+    }
   }
 
-  orderDetail(order: any) {
+  getAllOrders() {
+    this.dataHelper.getDataObservable().subscribe((data: any) => {
+      if (data.allOrdersFetched) {
+        this.filterMyOrders();
+      }
+    });
+  }
+
+  filterMyOrders() {
+    const allOrders = this.dataHelper.allOrders.sort((a, b) => b.createdOn - a.createdOn);
+    if (this.userAuth.currentUser.isSuperAdmin) {
+      this.allOrders = allOrders;
+    } else {
+      this.allOrders = allOrders.filter(x => x.clientId === this.userAuth.currentUser.uid);
+    }
+  }
+
+  orderDetail(order: iClientOrder) {
     this.dataHelper.orderDetails = order;
     this.router.navigate(['/order-detail']);
   }
 
   matchesSearchQuery(order: iClientOrder): boolean {
-    if (!order || !order.orderId) {
+    if (!order?.orderId) {
       return false;
     }
     if (this.searchQuery.trim() === '') {
       return true;
     }
-    const orderID = order.orderId.trim().toLowerCase();
+    const orderID = order.shippingInfo.firstName.trim().toLowerCase();
     return orderID.includes(this.searchQuery.toLowerCase());
   }
 

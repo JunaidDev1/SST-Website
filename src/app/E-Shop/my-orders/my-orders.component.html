@@ -7,8 +7,8 @@
         <nav aria-label="breadcrumb">
             <div class="container">
                 <div class="row mb-3">
-                    <div class="col-lg-9">
-                        <h4 class="m-0 fw-bold"> My Orders</h4>
+                    <div class="col-lg-9 ps-0">
+                        <h4 class="m-0 fw-bold">My Orders</h4>
                     </div>
                     <div class="col-lg-3">
                         <div>
@@ -21,21 +21,20 @@
         </nav>
     </div>
 
-    <div class="container ">
+    <!-- <div class="container ">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a (click)="activeTab='new'" class="nav-link active" data-bs-toggle="tab" href="#home">New Orders
-                    <span class="badge bg-success">12</span>
+                <a (click)="activeTab='new'" class="nav-link active" data-bs-toggle="tab" href="#home">
+                    New Orders <span class="badge bg-success">12</span>
                 </a>
             </li>
             <li (click)="activeTab='history'" class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#menu1">
-                    History Orders
-                    <span class="badge bg-success">20</span>
+                    History Orders <span class="badge bg-success">20</span>
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
 
     <div *ngIf="allOrders.length" class="container mt-3">
         <table class="table table-bordered table-striped table-hover shadow-sm round"
@@ -43,10 +42,13 @@
             <thead>
                 <tr>
                     <th class="text-center">No.</th>
-                    <th class="text-center">Order Id</th>
-                    <th class="text-center">Total Price</th>
+                    <th class="text-center">Order ID</th>
+                    <th class="text-center">Cient ID</th>
+                    <th class="text-center">Cient Name</th>
+                    <th class="text-center">Cient Email</th>
+                    <th class="text-center">Total Amount</th>
                     <th class="text-center">Status</th>
-                    <th class="text-center">Created On</th>
+                    <th class="text-center">Order Date</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -57,14 +59,17 @@
                     <tr *ngIf="matchesSearchQuery(order)">
                         <td class="text-center">{{i+1}}</td>
                         <td class="text-center">{{order.orderId}}</td>
-                        <td class="text-center">${{order.total}}</td>
-                        <td style="text-transform: capitalize;" class="text-center">{{order?.status ||
-                            'Pending'}}</td>
-                        <td class="text-center">{{order.createdOn | date :'mediumDate'}}</td>
+                        <td class="text-center">{{order.clientId}}</td>
                         <td class="text-center">
-                            <button (click)="orderDetail(order)" style="font-size: 11px;"
-                                class="btn btn-sm ms-1 btn-primary">
-                                Detail</button>
+                            {{order.shippingInfo.firstName}} {{order.shippingInfo.lastName}}
+                        </td>
+                        <td class="text-center">{{order.shippingInfo.email}}</td>
+                        <td class="text-center">${{order.grandTotal}}</td>
+                        <td style="text-transform: capitalize;" class="text-center">
+                            {{order?.status || 'Pending'}}</td>
+                        <td class="text-center">{{order.createdOn | date :'medium'}}</td>
+                        <td class="text-center">
+                            <button (click)="orderDetail(order)" class="btn btn-sm ms-1 btn-primary">Detail</button>
                         </td>
                     </tr>
                 </ng-container>
@@ -77,6 +82,6 @@
     </div>
 
     <p class="text-center mt-5 mb-5" *ngIf="!allOrders.length">No order found!</p>
-
 </div>
+
 <app-footer></app-footer>

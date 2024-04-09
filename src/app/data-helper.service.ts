@@ -3,18 +3,21 @@ import { Subject } from 'rxjs';
 import { iProduct } from './shared/product';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { ToastrService } from 'ngx-toastr';
+import { iClientOrder } from './shared/order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataHelperService {
 
-  productDetail: iProduct;
-  orderDetails: any;
+  productDetail: iProduct = new iProduct();
+  orderDetails: iClientOrder = new iClientOrder();
   displayLoading: boolean;
   dataFetching: any = {};
   dataObservable = new Subject<any>();
   allProducts: iProduct[] = [];
+  allOrders: iClientOrder[] = [];
+
   ourServices: any[] = [
     {
       title: 'IT Design',
@@ -168,6 +171,7 @@ export class DataHelperService {
 
   fetchAllData() {
     this.getAllProducts();
+    this.getAllOrders();
   }
 
   getAllProducts() {
@@ -182,6 +186,20 @@ export class DataHelperService {
         this.displayLoading = false;
         this.dataFetching.allProductFetched = true;
         this.publishSomeData({ allProductFetched: true });
+      });
+  }
+
+  getAllOrders() {
+    const urlPath = 'orders';
+    this.getFirebaseData(urlPath)
+      .then((snapshot) => {
+        this.allOrders = [];
+        const allOrders = snapshot?.val() ?? {};
+        for (const key in allOrders) {
+          this.allOrders.push(allOrders[key]);
+        }
+        this.dataFetching.allOrdersFetched = true;
+        this.publishSomeData({ allOrdersFetched: true });
       });
   }
 

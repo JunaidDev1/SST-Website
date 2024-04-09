@@ -76,7 +76,7 @@
             <div class="col-lg-5">
                 <div style="font-size: 20px !important;font-weight: bold !important;" class="text-end"><span
                         style="font-size: 12px !important;color:gray;font-weight: 400 !important;">USD</span>
-                    {{apiService.taxesFee + apiService.getSubTotal()}}
+                    {{apiService.taxesFee + apiService.getSubTotal() | number: '1.2-2'}}
                 </div>
             </div>
         </div>

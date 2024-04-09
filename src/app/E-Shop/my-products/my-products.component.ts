@@ -41,8 +41,7 @@ export class MyProductsComponent implements OnInit {
   getAllProducts() {
     this.dataHelper.getDataObservable().subscribe((data: any) => {
       if (data.allProductFetched) {
-        const allProducts = this.dataHelper.allProducts.sort((a, b) => b.createdOn - a.createdOn);
-        this.allProducts = allProducts.filter(x => x.ownerId === this.userAuth?.currentUser?.uid);
+        this.allProducts = this.dataHelper.allProducts.sort((a, b) => b.createdOn - a.createdOn);
       }
     });
   }
