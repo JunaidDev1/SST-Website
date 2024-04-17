@@ -23,7 +23,8 @@
                 </div>
 
                 <div class="p-2 pointer" (click)="productDetail(product)">
-                    <h5 class="card-title description mt-3" style="font-weight: bold;">{{product.title||'Test product'}}
+                    <h5 class="card-title description mt-3" style="font-weight: bold;">
+                        {{product.title||'Test product'}}
                     </h5>
                     <p class="card-text mt-0 mb-1">{{product.category | titlecase}}</p>
                     <p class="card-text mt-0" style="font-weight: bold !important;">
@@ -32,25 +33,22 @@
                 </div>
                 <div class="card-footer p-0" style="padding-top: 10px !important;padding-bottom: 10px !important;">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div *ngIf="!userAuth.currentUser?.isSuperAdmin" class="col-md-12">
                             <div class="text-start">
-                                <button class="btn btn-primary btn-block" style="font-size: 14px !important;"
-                                    (click)="addProductToCart(product)">
+                                <button class="btn btn-primary w-100" (click)="addProductToCart(product)">
                                     <i class="bi bi-cart-plus"></i> Add to Cart
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div>
-                                <button class="btn btn-success btn-block" (click)="addProduct(product)">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </div>
+                        <div *ngIf="userAuth.currentUser?.isSuperAdmin" class="col-md-6">
+                            <button class="btn btn-primary w-100" (click)="addProduct(product)">
+                                Edit <i class="bi bi-pencil-square"></i>
+                            </button>
                         </div>
-                        <div class="col-md-3">
-                            <button class="btn ms-1 btn-danger btn-block"
+                        <div *ngIf="userAuth.currentUser?.isSuperAdmin" class="col-md-6">
+                            <button class="btn btn-block btn-danger w-100"
                                 (click)="openDeleteConfirmationModal(product.productId)">
-                                <i class="bi bi-trash"></i>
+                                Delete <i class="bi bi-trash"></i>
                             </button>
                         </div>
                     </div>

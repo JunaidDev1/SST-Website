@@ -26,7 +26,11 @@ export class LoginComponent {
     public userAuth: UserAuthService,
     public dataHelper: DataHelperService,
     private toastr: ToastrService
-  ) { }
+  ) {
+    if (userAuth.currentUser.uid) {
+      router.navigate(['/e-shop']);
+    }
+  }
 
   ngOnInit(): void {
     this.onLoginForm = this.fb.group({

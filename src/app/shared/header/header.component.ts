@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
     private route: Router,
     public router: ActivatedRoute,
     public userAuth: UserAuthService,
-    public apiService: ApiService) {
+    public apiService: ApiService
+  ) {
     this.key = router.snapshot.routeConfig?.path;
   }
 

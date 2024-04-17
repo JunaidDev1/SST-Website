@@ -5,6 +5,7 @@ import { DataHelperService } from 'src/app/data-helper.service';
 import { ApiService } from 'src/app/shared/api.service';
 import { HttpHelperService } from 'src/app/shared/http-helper.service';
 import { iProduct } from 'src/app/shared/product';
+import { UserAuthService } from 'src/app/shared/user-auth.service';
 import { AddProductComponent } from 'src/app/sharedComponents/add-product/add-product.component';
 import { DeleteModalComponent } from 'src/app/sharedComponents/delete-modal/delete-modal.component';
 
@@ -22,7 +23,8 @@ export class ProductComponent implements OnInit {
     private dataHelper: DataHelperService,
     private httpHelper: HttpHelperService,
     private apiService: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public userAuth: UserAuthService
   ) { }
 
   ngOnInit(): void {
