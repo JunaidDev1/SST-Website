@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div class="headerBg"></div>
+
+<div class="container mt-5 mb-5">
+
+   <div class="row">
+      <div class="col-md-6">
+         <h5 class="ms-2 mb-3">My Products</h5>
+      </div>
+      <div class="col-md-6">
+         <div class="text-end">
+            <button class="btn btn-success" (click)="addProduct()">
+               <i class="bi bi-plus-circle-fill"></i> Add Product
+            </button>
+         </div>
+      </div>
+   </div>
+
+   <app-product *ngIf="allProducts.length" [allProducts]="allProducts"></app-product>
+</div>
+
+<app-footer></app-footer>

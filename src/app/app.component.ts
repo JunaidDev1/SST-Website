@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataHelperService } from './data-helper.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,12 @@ export class AppComponent {
 
   onActivate(event: any) {
     window.scroll(0, 0);
+  }
+
+  constructor(
+    public dataHelper: DataHelperService
+  ) {
+
   }
 
 }

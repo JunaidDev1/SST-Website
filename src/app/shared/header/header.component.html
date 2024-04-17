@@ -2,18 +2,22 @@
     <div class="container-fluid">
         <div class="navbar-brand pointer" routerLink="/home">
             <img src="./assets/images/logo.png">
-            <h5 class="text-white">Soft Sync <br>Technologies</h5>
+            <h5 *ngIf="key === 'e-shop'" class="text-white">Soft Sync <br>Products</h5>
+            <h5 *ngIf="key !== 'e-shop'" class="text-white">Soft Sync <br>Technologies</h5>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ms-auto">
-                <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                <!-- <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Home</a>
+                </li> -->
+                <li [routerLink]="['/home']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
+                    <a class="nav-link text-white text-uppercase">E-Shop</a>
                 </li>
                 <li [routerLink]="['/services']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
-                    <a class="nav-link text-white text-uppercase">Services</a>
+                    <a class="nav-link text-white text-uppercase">IT Services</a>
                 </li>
                 <li [routerLink]="['/our-team']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Team</a>
@@ -23,6 +27,73 @@
                 </li>
                 <li [routerLink]="['/contact-us']" [routerLinkActive]="'isActive'" class="nav-item px-2 pointer">
                     <a class="nav-link text-white text-uppercase">Contact Us</a>
+                </li>
+                <li class="nav-item dropdown me-3">
+                    <a *ngIf="userAuth.currentUser?.uid" style="cursor: pointer !important;"
+                        class="nav-link text-light dropdown-toggle loginSignup" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa fa-user text-light me-2"></i> {{userAuth.currentUser.firstName | titlecase}}
+                    </a>
+                    <a *ngIf="!userAuth.currentUser?.uid" style="cursor: pointer !important;"
+                        class="nav-link text-white text-uppercase loginSignup">
+                        <i class="fa fa-user me-2"></i>
+                        <span routerLink="/login">Login</span>
+                        <span class="px-2">|</span>
+                        <span routerLink="/signup">Signup</span>
+                    </a>
+                    <ul class="dropdown-menu dropdownPopup me-4">
+                        <li *ngIf="userAuth.currentUser?.isSuperAdmin">
+                            <a class="dropdown-item" routerLink="/my-products">My Products</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
+                        <li><a class="dropdown-item" routerLink="/change-password">Change Password</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item">
+                                <button (click)="userAuth.logoutUser()" class="btn w-100 btn-danger">
+                                    <i class="fa fa-box-arrow-in-left"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li *ngIf="!userAuth.currentUser?.isSuperAdmin" class="nav-item px-2 pointer">
+                    <div class="dropdown">
+                        <button class="btn btn-link text-white p-0">
+                            <i style="font-size: 23px;" class="bi bi-cart"></i>
+                            <span class="badge bg-primary">{{ apiService.getCartItemsCount() }}</span>
+                        </button>
+                        <div class="dropdown-content shadow p-3">
+                            <div *ngFor="let item of apiService.cartItems" class="row border-bottom mb-3">
+                                <div class="d-flex p-0">
+                                    <img class="productImg" [src]="item.imageUrls[0]">
+                                    <div style="width: 100%;">
+                                        <p class="description my-1">{{item.name}}</p>
+                                        <p class="price">
+                                            <span class="text-secondary">{{item.quantity}}</span> X
+                                            {{ item.price | currency: 'USD' }}
+                                            <span (click)="removeItem(item)"
+                                                class="float-end pointer text-danger">X</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check">
+                                <input [(ngModel)]="ageedToTerms" class="form-check-input radio-input pointer"
+                                    type="checkbox" name="agreeToTerms" id="agreeToTerms">
+                                <label class="form-check-label pointer" for="agreeToTerms">
+                                    <small>I agree with the terms and conditions</small>
+                                </label>
+                            </div>
+                            <button routerLink="/checkout" [disabled]="!ageedToTerms || !apiService.cartItems.length"
+                                class="btn btn-success w-100 my-3">Checkout Now</button>
+                            <button (click)="openCartDialog()" class="btn btn-outline-primary w-100">View Cart</button>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <div class="p-5">
+        <h5 class="ms-2 mb-3">Our Featured Products</h5>
+        <app-product *ngIf="featuredProducts.length" [allProducts]="featuredProducts"></app-product>
+
+        <h5 class="ms-2 mb-3">Most Popular Products</h5>
+        <app-product *ngIf="mostPopulatProducts.length" [allProducts]="mostPopulatProducts"></app-product>
+    </div>
+</div>

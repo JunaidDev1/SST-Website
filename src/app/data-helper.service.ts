@@ -1,9 +1,22 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { iProduct } from './shared/product';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { ToastrService } from 'ngx-toastr';
+import { iClientOrder } from './shared/order';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataHelperService {
+
+  productDetail: iProduct = new iProduct();
+  orderDetails: iClientOrder = new iClientOrder();
+  displayLoading: boolean;
+  dataFetching: any = {};
+  dataObservable = new Subject<any>();
+  allProducts: iProduct[] = [];
+  allOrders: iClientOrder[] = [];
 
   ourServices: any[] = [
     {
@@ -148,6 +161,93 @@ export class DataHelperService {
     }
   ];
 
-  constructor() { }
+  constructor(
+    private firebaseDb: AngularFireDatabase,
+    private toastr: ToastrService
+  ) {
+    this.displayLoading = true;
+    this.fetchAllData();
+  }
+
+  fetchAllData() {
+    this.getAllProducts();
+    this.getAllOrders();
+  }
+
+  getAllProducts() {
+    const urlPath = 'products';
+    this.getFirebaseData(urlPath)
+      .then((snapshot) => {
+        this.allProducts = [];
+        const allProducts = snapshot?.val() ?? {};
+        for (const key in allProducts) {
+          this.allProducts.push(allProducts[key]);
+        }
+        this.displayLoading = false;
+        this.dataFetching.allProductFetched = true;
+        this.publishSomeData({ allProductFetched: true });
+      });
+  }
+
+  getAllOrders() {
+    const urlPath = 'orders';
+    this.getFirebaseData(urlPath)
+      .then((snapshot) => {
+        this.allOrders = [];
+        const allOrders = snapshot?.val() ?? {};
+        for (const key in allOrders) {
+          this.allOrders.push(allOrders[key]);
+        }
+        this.dataFetching.allOrdersFetched = true;
+        this.publishSomeData({ allOrdersFetched: true });
+      });
+  }
+
+  publishSomeData(data: any) {
+    this.dataObservable.next(data);
+  }
+
+  async getFirebaseData(urlPath: string): Promise<any> {
+    try {
+      return this.firebaseDb.database.ref().child(urlPath)
+        .once('value', (snapshot) => {
+          return snapshot;
+        });
+    } catch (err) {
+      this.displayLoading = false;
+      this.toastr.error('Error try again!');
+    }
+  }
+
+  async removeFirebaseData(urlPath: string): Promise<any> {
+    try {
+      return this.firebaseDb.database.ref(urlPath)
+        .remove().then((resp) => {
+          return resp;
+        });
+    } catch (err: any) {
+      this.toastr.error(err.message);
+    }
+  }
+
+  async updateDataOnFirebase(urlPath: string, data: any): Promise<any> {
+    try {
+      const resp = await this.firebaseDb.database.ref().child(urlPath).set(data);
+      return resp;
+    } catch (e) {
+      this.displayLoading = false;
+      this.toastr.error('Error try again!');
+    }
+  }
+
+  getDataObservable(): Subject<any> {
+    return this.dataObservable;
+  }
+
+  deepCloneData(data: any) {
+    if (data) {
+      return JSON.parse(JSON.stringify(data));
+    }
+  }
 
 }

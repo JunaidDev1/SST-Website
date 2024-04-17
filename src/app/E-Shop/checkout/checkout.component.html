@@ -1,0 +1,107 @@
+<app-header></app-header>
+<div class="headerBg"></div>
+
+<div *ngIf="!showSuccessPopup" class="row px-5 main-container">
+    <div class="col-lg-6 px-5 left-column mt-4">
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+
+    <!-- Right column -->
+
+    <div style="height: 99vh !important; padding-top: 4em !important;" class="col-lg-6 p-4 right-column rightColumn">
+
+        <div *ngFor="let item of cartItems" class="row border-bottom pb-4 mb-4">
+            <div class="col-lg-2">
+                <div>
+                    <p class="totalBadge"><span class="badge">{{item.quantity}}</span></p>
+                    <img class="productImg" [src]="item.imageUrls[0]">
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="description bold">{{item.title}}</div>
+            </div>
+            <div class="col-lg-2">
+                <div class="price text-end">{{ apiService.getOneItemTotalPrice(item) | currency: 'USD' }}</div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-9">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Discount code">
+                </div>
+            </div>
+            <div class="col-lg-3 ps-4">
+                <button class="btn btn-primary">Apply</button>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-lg-6">
+                <div style="font-size: 14px;" class="text-start">Subtotal</div>
+            </div>
+            <div class="col-lg-5">
+                <div style="font-weight: 600 !important;font-size: 14px !important;" class="text-end">
+                    {{apiService.getSubTotal() | currency: 'USD'}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-lg-6">
+                <div style="font-size: 14px;" class="text-start">Shipping</div>
+            </div>
+            <div class="col-lg-5">
+                <div style="font-weight: 600 !important; font-size: 13px !important;" class="text-end">FREE</div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-lg-6">
+                <div style="font-size: 14px;" class="text-start">Estimated taxes
+                    <i class="fa fa-question-circle"></i>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div style="font-weight: 600 !important; font-size: 13px !important;" class="text-end">
+                    {{apiService.taxesFee | currency: 'USD'}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div style="font-size: 20px;font-weight: bold !important;" class="text-start">Total</div>
+            </div>
+            <div class="col-lg-5">
+                <div style="font-size: 20px !important;font-weight: bold !important;" class="text-end"><span
+                        style="font-size: 12px !important;color:gray;font-weight: 400 !important;">USD</span>
+                    {{apiService.taxesFee + apiService.getSubTotal() | number: '1.2-2'}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="showSuccessPopup" class="row justify-content-center mt-5">
+    <div class="col-md-3 text-center pt-5">
+        <div class="card shadow-sm p-5">
+            <h5>Your order has been received</h5>
+            <p class="my-3">
+                <img class="checkmarkImage"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8thit5dyK9T3sljabIz7WadrbDt8nJgCJ8aXHsxWR8A&s">
+            </p>
+            <p>Thank you for your purchase!</p>
+            <p class="font-sm my-0">
+                <small>Your order id is: {{orderId}}</small>
+            </p>
+            <p class="font-sm">
+                <small>You will receive an order confirmation email with details of your order.</small>
+            </p>
+            <p><button routerLink="/e-shop" class="btn btn-primary btn-lg">Continue Shopping</button></p>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
